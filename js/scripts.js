@@ -1,0 +1,1 @@
+console.log("O arquivo scripts.js foi incluído corretamente!");
