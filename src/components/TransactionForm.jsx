@@ -45,6 +45,7 @@ export default function TransactionForm({ onAddTransaction }) {
       <Box component="form" onSubmit={handleSubmit} className="form-grid">
         <TextField
           label="Descrição"
+          placeholder="Ex: Salário, Mercado..."
           value={descricao}
           onChange={(e) => setDescricao(e.target.value)}
           fullWidth
@@ -68,6 +69,7 @@ export default function TransactionForm({ onAddTransaction }) {
         <TextField
           label="Valor"
           type="number"
+          placeholder="R$ 0,00"
           value={valor}
           onChange={(e) => setValor(e.target.value)}
           fullWidth

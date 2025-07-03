@@ -1,35 +1,22 @@
 import { Container } from "@mui/material";
 import Header from "./components/Header";
-import Banner from "./components/Banner";
-import TransactionForm from "./components/TransactionForm";
-import TransactionTable from "./components/TransactionTable";
-import { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Transacoes from "./pages/Transacoes";
 
 function App() {
-  const [transactions, setTransactions] = useState([]);
-
-  const handleAddTransacao = (novaTransacao) => {
-    setTransactions((prevTransactions) => [...prevTransactions, novaTransacao]);
-    console.log("Transação adicionada:", novaTransacao);
-  };
-
-  const handleDeleteTransaction = (indexToRemove) => {
-    setTransactions((prevTransactions) =>
-      prevTransactions.filter((_, index) => index !== indexToRemove)
-    );
-    console.log("Transação removida:", indexToRemove);
-  };
-
   return (
-    <Container maxWidth="lg">
-      <Header />
-      <Banner />
-      <TransactionForm onAddTransaction={handleAddTransacao} />
-      <TransactionTable
-        transactions={transactions}
-        onDelete={handleDeleteTransaction}
-      />
-    </Container>
+    <BrowserRouter>
+      <Container maxWidth="lg">
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/transacoes" element={<Transacoes />} />
+          <Route path="/*" element={<p>Página não encontrada (404)</p>} />
+        </Routes>
+      </Container>
+    </BrowserRouter>
   );
 }
 

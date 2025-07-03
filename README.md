@@ -67,6 +67,7 @@ A aplicação será iniciada em: [http://localhost:5173](http://localhost:5173)
 ├── src/
 │   ├── assets/              # Imagens e recursos visuais
 │   ├── components/
+│   ├── pages/               # Páginas principais
 │   ├── styles/
 │   │   └── global.css       # Estilos globais
 │   ├── App.jsx              # Componente raiz
