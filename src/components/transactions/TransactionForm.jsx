@@ -1,5 +1,4 @@
 import {
-  Alert,
   Box,
   Button,
   FormControl,
@@ -7,11 +6,11 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  Snackbar,
   Switch,
   TextField,
 } from "@mui/material";
 import { useState } from "react";
+import CustomSnackbar from "../common/CustomSnackbar";
 
 export default function TransactionForm({ onAddTransaction }) {
   const [descricao, setDescricao] = useState("");
@@ -121,20 +120,13 @@ export default function TransactionForm({ onAddTransaction }) {
       </Box>
 
       {/* Snackbar para feedback */}
-      <Snackbar
+      <CustomSnackbar
         open={snackbar.open}
-        autoHideDuration={3000}
+        message={snackbar.message}
+        severity={snackbar.severity}
+        duration={snackbar.timeout}
         onClose={handleCloseSnackbar}
-        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-      >
-        <Alert
-          onClose={handleCloseSnackbar}
-          severity={snackbar.severity}
-          sx={{ width: "100%" }}
-        >
-          {snackbar.message}
-        </Alert>
-      </Snackbar>
+      />
     </>
   );
 }

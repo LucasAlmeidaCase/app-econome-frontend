@@ -1,11 +1,7 @@
 import { useState } from "react";
-import {
-  Alert,
-  Box,
-  Button,
-  Snackbar,
-} from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { TransactionTable, TransactionModal } from "../components/transactions";
+import CustomSnackbar from "../components/common/CustomSnackbar";
 
 const Transacoes = () => {
   const [transactions, setTransactions] = useState([]);
@@ -20,7 +16,7 @@ const Transacoes = () => {
       message: "Transação adicionada com sucesso!",
       timeout: 2000,
       severity: "success",
-    })
+    });
   };
 
   const handleDelete = (indexToRemove) => {
@@ -41,18 +37,12 @@ const Transacoes = () => {
     <Box mt={2} mb={2}>
       {/* Botão para abrir o modal */}
       <Box display="flex" justifyContent="flex-end">
-          <Button
-            variant="contained"
-            onClick={() => setOpenModal(true)}
-          >
+        <Button variant="contained" onClick={() => setOpenModal(true)}>
           Adicionar Transação
         </Button>
       </Box>
 
-          <TransactionTable
-            transactions={transactions}
-            onDelete={handleDelete}
-          />
+      <TransactionTable transactions={transactions} onDelete={handleDelete} />
 
       <TransactionModal
         open={openModal}
@@ -61,20 +51,13 @@ const Transacoes = () => {
       />
 
       {/* Snackbar para mensagens de erro ou sucesso */}
-      <Snackbar
+      <CustomSnackbar
         open={snackbar.open}
-        autoHideDuration={3000}
+        message={snackbar.message}
+        severity={snackbar.severity}
+        duration={snackbar.timeout}
         onClose={closeSnackbar}
-        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-      >
-        <Alert
-          onClose={closeSnackbar}
-          severity={snackbar.severity}
-          variant="filled"
-        >
-          {snackbar.message}
-        </Alert>
-      </Snackbar>
+      />
     </Box>
   );
 };
