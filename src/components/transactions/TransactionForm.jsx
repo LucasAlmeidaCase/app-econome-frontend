@@ -14,7 +14,7 @@ import CustomSnackbar from "../common/CustomSnackbar";
 
 export default function TransactionForm({ onAddTransaction }) {
   const [descricao, setDescricao] = useState("");
-  const [tipo, setTipo] = useState("Receita");
+  const [tipo_transacao, setTipoTransacao] = useState("Receita");
   const [valor, setValor] = useState("");
   const [pago, setPago] = useState(false);
 
@@ -43,14 +43,14 @@ export default function TransactionForm({ onAddTransaction }) {
 
     onAddTransaction({
       descricao,
-      tipo,
+      tipo_transacao,
       valor: parseFloat(valor),
       pago,
     });
 
     // Limpa os campos
     setDescricao("");
-    setTipo("Receita");
+    setTipoTransacao("Receita");
     setValor("");
     setPago(false);
 
@@ -83,8 +83,8 @@ export default function TransactionForm({ onAddTransaction }) {
         <FormControl fullWidth margin="normal">
           <InputLabel>Tipo</InputLabel>
           <Select
-            value={tipo}
-            onChange={(e) => setTipo(e.target.value)}
+            value={tipo_transacao}
+            onChange={(e) => setTipoTransacao(e.target.value)}
             label="Tipo"
           >
             <MenuItem value="Receita">Receita</MenuItem>

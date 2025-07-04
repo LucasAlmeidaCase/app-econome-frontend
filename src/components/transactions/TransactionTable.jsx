@@ -53,7 +53,7 @@ export default function TransactionTable({ transactions = [], onDelete }) {
           {transactions.map((transacao, index) => (
             <TableRow key={index} hover>
               <TableCell align="center">{transacao.descricao}</TableCell>
-              <TableCell align="center">{transacao.tipo}</TableCell>
+              <TableCell align="center">{transacao.tipo_transacao}</TableCell>
               <TableCell align="center">
                 R$ {parseFloat(transacao.valor).toFixed(2)}
               </TableCell>

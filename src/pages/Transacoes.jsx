@@ -1,33 +1,39 @@
 import { useState } from "react";
-import { Box, Button } from "@mui/material";
+import { Box, Button, CircularProgress, Typography } from "@mui/material";
 import { TransactionTable, TransactionModal } from "../components/transactions";
 import CustomSnackbar from "../components/common/CustomSnackbar";
+import { useTransacoes } from "../hooks/useTransacoes";
 
 const Transacoes = () => {
-  const [transactions, setTransactions] = useState([]);
+  const { transacoes, loading, error, add, remove } = useTransacoes();
+
   const [openModal, setOpenModal] = useState(false);
   const [snackbar, setSnackbar] = useState({ open: false });
 
-  const handleAdd = (novaTransacao) => {
-    setTransactions((prevTransactions) => [...prevTransactions, novaTransacao]);
+  const handleAdd = async (novaTransacao) => {
+    const sucesso = await add(novaTransacao);
+
     setOpenModal(false);
     setSnackbar({
       open: true,
-      message: "Transação adicionada com sucesso!",
+      message: sucesso
+      ? "Transação adicionada com sucesso!"
+      : "Erro ao adicionar transação.",
       timeout: 2000,
-      severity: "success",
+      severity: sucesso ? "success": "error",
     });
   };
 
-  const handleDelete = (indexToRemove) => {
-    setTransactions((prevTransactions) =>
-      prevTransactions.filter((_, index) => index !== indexToRemove)
-    );
+  const handleDelete = async (indexToRemove) => {
+    const sucesso = await remove(transacoes[indexToRemove].descricao);
+
     setSnackbar({
       open: true,
-      message: "Transação removida com sucesso!",
+      message: sucesso
+      ? "Transação removida com sucesso!"
+      : "Erro ao remover transação.",
       timeout: 2000,
-      severity: "success",
+      severity: sucesso ? "success": "error",
     });
   };
 
@@ -37,12 +43,27 @@ const Transacoes = () => {
     <Box mt={2} mb={2}>
       {/* Botão para abrir o modal */}
       <Box display="flex" justifyContent="flex-end">
-        <Button variant="contained" onClick={() => setOpenModal(true)}>
+        <Button
+          variant="contained"
+          onClick={() => setOpenModal(true)}
+          disabled={loading || Boolean(error)}
+        >
           Adicionar Transação
         </Button>
       </Box>
 
-      <TransactionTable transactions={transactions} onDelete={handleDelete} />
+      {loading ? (
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          height="300px"
+        >
+          <CircularProgress />
+        </Box>
+      ) : (
+        <TransactionTable transactions={transacoes} onDelete={handleDelete} />
+      )}
 
       <TransactionModal
         open={openModal}
@@ -58,6 +79,13 @@ const Transacoes = () => {
         duration={snackbar.timeout}
         onClose={closeSnackbar}
       />
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
+        {error && <Typography color="error">{error}</Typography>}
+      </Box>
     </Box>
   );
 };
