@@ -7,8 +7,8 @@ import {
 
 export function useTransacoes() {
   const [transacoes, setTransacoes] = useState([]);
-  const [loading, setLoading] = useState([]);
-  const [error, setError] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     (async () => {
