@@ -13,10 +13,12 @@ import { useState } from "react";
 import CustomSnackbar from "../common/CustomSnackbar";
 
 export default function TransactionForm({ onAddTransaction }) {
+  const [dataVencimento, setDataVencimento] = useState(new Date().toISOString().substring(0,10)); // Data atual ("YYYY/MM/DD")
   const [descricao, setDescricao] = useState("");
-  const [tipo_transacao, setTipoTransacao] = useState("Receita");
+  const [tipoTransacao, setTipoTransacao] = useState("Receita");
   const [valor, setValor] = useState("");
   const [pago, setPago] = useState(false);
+  const [dataPagamento, setDataPagamento] = useState("");
 
   // Estados para a Snackbar
   const [snackbar, setSnackbar] = useState({
@@ -42,10 +44,12 @@ export default function TransactionForm({ onAddTransaction }) {
     }
 
     onAddTransaction({
+      data_vencimento: dataVencimento, 
       descricao,
-      tipo_transacao,
+      tipo_transacao: tipoTransacao,
       valor: parseFloat(valor),
       pago,
+      data_pagamento: pago ? dataPagamento : null
     });
 
     // Limpa os campos
@@ -72,6 +76,15 @@ export default function TransactionForm({ onAddTransaction }) {
         sx={{ mt: 2 }}
       >
         <TextField
+          label="Vencimento"
+          type="date"
+          value={dataVencimento}
+          onChange={(e) => setDataVencimento(e.target.value)}
+          fullWidth
+          margin="normal"
+          InputLabelProps={{ shrink: true }}
+        />
+        <TextField
           label="Descrição"
           placeholder="Ex: Salário, Mercado..."
           value={descricao}
@@ -83,7 +96,7 @@ export default function TransactionForm({ onAddTransaction }) {
         <FormControl fullWidth margin="normal">
           <InputLabel>Tipo</InputLabel>
           <Select
-            value={tipo_transacao}
+            value={tipoTransacao}
             onChange={(e) => setTipoTransacao(e.target.value)}
             label="Tipo"
           >
@@ -113,6 +126,19 @@ export default function TransactionForm({ onAddTransaction }) {
           label="Pago"
           sx={{ mb: 2 }}
         />
+
+        {pago && (
+          <TextField
+            label="Data de Pagamento"
+            type="date"
+            value={dataPagamento}
+            onChange={e => setDataPagamento(e.target.value)}
+            fullWidth
+            margin="normal"
+            InputLabelProps={{ shrink: true }}
+          >
+          </TextField>
+        )}
 
         <Button type="submit" variant="contained" fullWidth>
           Salvar

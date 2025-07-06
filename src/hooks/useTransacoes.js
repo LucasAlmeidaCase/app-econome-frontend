@@ -27,10 +27,12 @@ export function useTransacoes() {
   const add = async (nova) => {
     try {
       await createTransacao({
+        data_vencimento: nova.data_vencimento,
         descricao: nova.descricao,
         tipo_transacao: nova.tipo_transacao,
         valor: nova.valor,
         pago: nova.pago,
+        data_pagamento: nova.data_pagamento,
       });
       setTransacoes((prev) => [...prev, nova]);
       return true;

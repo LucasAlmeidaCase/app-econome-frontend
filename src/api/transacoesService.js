@@ -11,17 +11,20 @@ export async function fetchTransacoes() {
 }
 
 export async function createTransacao(transacao) {
-  const formData = new FormData();
-  formData.append("descricao", transacao.descricao);
-  formData.append("tipo_transacao", transacao.tipo_transacao);
-  formData.append("valor", transacao.valor);
-  formData.append("pago", transacao.pago);
-
-  const response = await api.post("/transacao", formData, {
-    headers: {
-      "Content-Type": "multipart/form-data",
+  const response = await api.post(
+    "/transacao",
+    {
+      descricao: transacao.descricao,
+      tipo_transacao: transacao.tipo_transacao,
+      valor: transacao.valor,
+      pago: transacao.pago,
+      data_vencimento: transacao.data_vencimento,
+      data_pagamento: transacao.data_pagamento,
     },
-  });
+    {
+      headers: { "Content-Type": "application/json" },
+    }
+  );
   return response.data;
 }
 
