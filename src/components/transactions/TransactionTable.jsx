@@ -56,7 +56,12 @@ export default function TransactionTable({ transactions = [], onDelete }) {
             <TableRow key={index} hover>
               <TableCell align="center">
                 {transacao.data_vencimento
-                  ? new Date(transacao.data_vencimento).toLocaleDateString()
+                  ? new Date(transacao.data_vencimento).toLocaleDateString(
+                      "pt-BR",
+                      {
+                        timeZone: "UTC",
+                      }
+                    )
                   : ""}
               </TableCell>
               <TableCell align="center">{transacao.descricao}</TableCell>
@@ -69,7 +74,12 @@ export default function TransactionTable({ transactions = [], onDelete }) {
               </TableCell>
               <TableCell align="center">
                 {transacao.data_pagamento
-                  ? new Date(transacao.data_pagamento).toLocaleDateString()
+                  ? new Date(transacao.data_pagamento).toLocaleDateString(
+                      "pt-BR",
+                      {
+                        timeZone: "UTC",
+                      }
+                    )
                   : ""}
               </TableCell>
               <TableCell align="center">
