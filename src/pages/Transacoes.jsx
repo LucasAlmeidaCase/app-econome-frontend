@@ -7,12 +7,7 @@ import {
 } from "../components/transactions";
 import CustomSnackbar from "../components/common/CustomSnackbar";
 import { useTransacoes } from "../hooks/useTransacoes";
-import {
-  isEntrePeriodo,
-  isEstaSemanaUTC,
-  isHojeUTC,
-  isMesAtual,
-} from "../utils/dateUtils";
+import { isEntrePeriodo, isEstaSemanaUTC, isHojeUTC } from "../utils/dateUtils";
 
 const Transacoes = () => {
   const { transacoes, loading, error, add, remove } = useTransacoes();
@@ -22,10 +17,18 @@ const Transacoes = () => {
 
   const [filtro, setFiltro] = useState(() => {
     const salvo = localStorage.getItem("filtroTransacoes");
-    return salvo ? JSON.parse(salvo) : { tipo: "mesAtual", dataInicio: null, dataFim: null };
+    if (salvo) return JSON.parse(salvo);
+
+    const hoje = new Date();
+    return {
+      tipo: "hoje",
+      dataInicio: hoje.toISOString().split("T")[0], // Formato YYYY-MM-DD
+      dataFim: null,
+    };
   });
 
   useEffect(() => {
+    console.log("filtro atualizado em Transacoes.jsx:", filtro);
     localStorage.setItem("filtroTransacoes", JSON.stringify(filtro));
   }, [filtro]);
 
@@ -58,15 +61,39 @@ const Transacoes = () => {
 
   const closeSnackbar = () => setSnackbar((prev) => ({ ...prev, open: false }));
 
+  console.log(
+    "Filtrando transações para:",
+    filtro.tipo,
+    "Data:",
+    filtro.dataInicio,
+    "Transações:",
+    transacoes.map((t) => ({
+      descricao: t.descricao,
+      data: t.data_vencimento,
+      matches: isHojeUTC(t.data_vencimento),
+    }))
+  );
   // Filtra as transações conforme o filtro selecionado
   const transacoesFiltradas = transacoes.filter((t) => {
     switch (filtro.tipo) {
       case "hoje":
-        return isHojeUTC(t.data_vencimento);
+        // Usa a data atual se dataInicio for null
+        return isHojeUTC(
+          t.data_vencimento,
+          filtro.dataInicio ? new Date(filtro.dataInicio) : new Date()
+        );
       case "semana":
-        return isEstaSemanaUTC(t.data_vencimento);
+        // Usa dataInicio como referência se existir, senão usa data atual
+        return isEstaSemanaUTC(
+          t.data_vencimento,
+          filtro.dataInicio ? new Date(filtro.dataInicio) : new Date()
+        );
       case "mesAtual":
-        return isMesAtual(t.data_vencimento);
+        return isEntrePeriodo(
+          t.data_vencimento,
+          filtro.dataInicio,
+          filtro.dataFim
+        );
       case "periodoPersonalizado":
         return isEntrePeriodo(
           t.data_vencimento,
@@ -81,8 +108,10 @@ const Transacoes = () => {
 
   return (
     <Box mt={2} mb={2}>
-      {/* Filtro de período */}
-      <TransactionFilter filtro={filtro} onChange={setFiltro} />
+      {/* Filtro de período centralizado */}
+      <Box display="flex" justifyContent="center">
+        <TransactionFilter filtro={filtro} onChange={setFiltro} />
+      </Box>
 
       {/* Botão para abrir o modal */}
       <Box display="flex" justifyContent="flex-end">
