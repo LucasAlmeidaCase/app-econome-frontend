@@ -11,6 +11,7 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useState } from "react";
 import ConfirmDialog from "../common/ConfirmDialog";
+import { formatarData } from "../../utils/dateUtils";
 
 export default function TransactionTable({ transactions = [], onDelete }) {
   const [openDialog, setOpenDialog] = useState(false);
@@ -55,14 +56,7 @@ export default function TransactionTable({ transactions = [], onDelete }) {
           {transactions.map((transacao, index) => (
             <TableRow key={index} hover>
               <TableCell align="center">
-                {transacao.data_vencimento
-                  ? new Date(transacao.data_vencimento).toLocaleDateString(
-                      "pt-BR",
-                      {
-                        timeZone: "UTC",
-                      }
-                    )
-                  : ""}
+                {formatarData(transacao.data_vencimento)}
               </TableCell>
               <TableCell align="center">{transacao.descricao}</TableCell>
               <TableCell align="center">{transacao.tipo_transacao}</TableCell>
@@ -73,14 +67,7 @@ export default function TransactionTable({ transactions = [], onDelete }) {
                 {transacao.pago ? "Sim" : "Não"}
               </TableCell>
               <TableCell align="center">
-                {transacao.data_pagamento
-                  ? new Date(transacao.data_pagamento).toLocaleDateString(
-                      "pt-BR",
-                      {
-                        timeZone: "UTC",
-                      }
-                    )
-                  : ""}
+                {formatarData(transacao.data_pagamento)}
               </TableCell>
               <TableCell align="center">
                 <IconButton
