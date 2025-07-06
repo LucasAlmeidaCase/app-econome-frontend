@@ -25,16 +25,13 @@ const TransactionFilter = ({ filtro, onChange }) => {
     const base = filtro.dataInicio
       ? parseLocalDate(filtro.dataInicio)
       : new Date(); // data/hora local
-    console.log("displayLabel base date:", base, "filtro:", filtro);
 
     switch (filtro.tipo) {
       case "hoje":
-        +console.log("displayLabel caso 'hoje'", toISODate(base));
         return formatarData(toISODate(base));
 
       case "semana": {
         const [ini, fim] = getSemanaRange(base);
-        console.log("displayLabel caso 'semana'", ini, fim);
         return `${formatarData(ini)} ↝ ${formatarData(fim)}`;
       }
 
@@ -78,13 +75,18 @@ const TransactionFilter = ({ filtro, onChange }) => {
         dataInicio: toISODate(new Date()), // Adiciona a data atual
         dataFim: null,
       };
+    } else if (tipo === "semana") {
+      const [ini, fim] = getSemanaRange();
+      novoFiltro = {
+        tipo,
+        dataInicio: toISODate(ini),
+        dataFim: toISODate(fim),
+      };
     } else if (tipo === "periodoPersonalizado") {
       novoFiltro = { ...filtro, tipo };
     } else {
       novoFiltro = { tipo, dataInicio: null, dataFim: null };
     }
-
-    console.log("🔄 handleTipoChange →", novoFiltro);
     onChange(novoFiltro);
   };
 
@@ -100,9 +102,7 @@ const TransactionFilter = ({ filtro, onChange }) => {
         <IconButton
           disabled={filtro.tipo === "todos"}
           onClick={() => {
-            +console.log("⬅️ shiftPeriod before:", filtro);
             const novo = shiftPeriod(filtro, -1);
-            +console.log("⬅️ shiftPeriod after:", novo);
             onChange(novo);
           }}
         >
@@ -121,9 +121,7 @@ const TransactionFilter = ({ filtro, onChange }) => {
         <IconButton
           disabled={filtro.tipo === "todos"}
           onClick={() => {
-            +console.log("➡️ shiftPeriod before:", filtro);
             const novo = shiftPeriod(filtro, +1);
-            +console.log("➡️ shiftPeriod after:", novo);
             onChange(novo);
           }}
         >

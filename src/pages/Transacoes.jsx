@@ -28,7 +28,6 @@ const Transacoes = () => {
   });
 
   useEffect(() => {
-    console.log("filtro atualizado em Transacoes.jsx:", filtro);
     localStorage.setItem("filtroTransacoes", JSON.stringify(filtro));
   }, [filtro]);
 
@@ -61,18 +60,6 @@ const Transacoes = () => {
 
   const closeSnackbar = () => setSnackbar((prev) => ({ ...prev, open: false }));
 
-  console.log(
-    "Filtrando transações para:",
-    filtro.tipo,
-    "Data:",
-    filtro.dataInicio,
-    "Transações:",
-    transacoes.map((t) => ({
-      descricao: t.descricao,
-      data: t.data_vencimento,
-      matches: isHojeUTC(t.data_vencimento),
-    }))
-  );
   // Filtra as transações conforme o filtro selecionado
   const transacoesFiltradas = transacoes.filter((t) => {
     switch (filtro.tipo) {
@@ -83,10 +70,10 @@ const Transacoes = () => {
           filtro.dataInicio ? new Date(filtro.dataInicio) : new Date()
         );
       case "semana":
-        // Usa dataInicio como referência se existir, senão usa data atual
         return isEstaSemanaUTC(
           t.data_vencimento,
-          filtro.dataInicio ? new Date(filtro.dataInicio) : new Date()
+          filtro.dataInicio,
+          filtro.dataFim
         );
       case "mesAtual":
         return isEntrePeriodo(

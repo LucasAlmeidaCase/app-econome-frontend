@@ -28,32 +28,15 @@ export function isHojeUTC(dataString, referencia = new Date()) {
   return transacaoUTC.getTime() === referenciaUTC.getTime();
 }
 
-export function isEstaSemanaUTC(dataString) {
-  if (!dataString) return false;
+export function isEstaSemanaUTC(dataString, dataInicio, dataFim) {
+  if (!dataString || !dataInicio || !dataFim) return false;
 
-  // 1) parse em UTC e zere hora/minuto UTC
-  const d = new Date(dataString);
-  const dataUTC = new Date(
-    Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate())
-  );
+  const data = new Date(dataString);
+  const inicio = new Date(dataInicio);
+  const fim = new Date(dataFim);
+  fim.setHours(23, 59, 59, 999);
 
-  // 2) hoje em UTC (sem horas)
-  const now = new Date();
-  const hojeUTC = new Date(
-    Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
-  );
-
-  // 3) dia da semana em UTC (0 = domingo … 6 = sábado)
-  const diaSemana = hojeUTC.getUTCDay();
-
-  // 4) primeiro e último dia em UTC
-  const primeiroDia = new Date(hojeUTC);
-  primeiroDia.setUTCDate(hojeUTC.getUTCDate() - diaSemana);
-
-  const ultimoDia = new Date(primeiroDia);
-  ultimoDia.setUTCDate(primeiroDia.getUTCDate() + 6);
-
-  return dataUTC >= primeiroDia && dataUTC <= ultimoDia;
+  return data >= inicio && data <= fim;
 }
 
 export function isMesAtual(dataString) {
@@ -82,14 +65,16 @@ export function isEntrePeriodo(dataString, inicio, fim) {
 
 // retorna [inicio, fim] da semana do parâmetro date
 export function getSemanaRange(date = new Date()) {
-  const hojeUTC = new Date(
-    Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate())
-  );
-  const diaSemana = hojeUTC.getUTCDay();
-  const inicio = new Date(hojeUTC);
-  inicio.setUTCDate(hojeUTC.getUTCDate() - diaSemana);
+  // Usa data local para cálculo
+  const diaSemana = date.getDay(); // 0 (Domingo) a 6 (Sábado)
+  const inicio = new Date(date);
+  inicio.setDate(date.getDate() - diaSemana);
+  inicio.setHours(0, 0, 0, 0);
+
   const fim = new Date(inicio);
-  fim.setUTCDate(inicio.getUTCDate() + 6);
+  fim.setDate(inicio.getDate() + 6);
+  fim.setHours(23, 59, 59, 999);
+
   return [inicio, fim];
 }
 
@@ -122,11 +107,14 @@ export function shiftPeriod(filtro, direction = +1) {
   }
 
   if (tipo === "semana") {
-    // pega range da semana que contém baseDate
-    const [ini, fim] = getSemanaRange(baseDate);
-    // desloca as duas datas
+    // Usa data fim como referência para navegação
+    const refDate = dataFim ? parseLocalDate(dataFim) : new Date();
+    const [ini, fim] = getSemanaRange(refDate);
+
+    // Ajusta para navegação
     ini.setDate(ini.getDate() + direction * 7);
     fim.setDate(fim.getDate() + direction * 7);
+
     return {
       tipo,
       dataInicio: toISODate(ini),
