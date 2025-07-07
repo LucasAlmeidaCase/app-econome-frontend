@@ -82,9 +82,25 @@ A aplicação será iniciada em: [http://localhost:5173](http://localhost:5173)
 
 ---
 
+## 🌐 API Externa Utilizada
+
+O projeto consome a API pública de cotações da [AwesomeAPI](https://docs.awesomeapi.com.br/api-de-moedas):
+
+- **Nome**: AwesomeAPI - API de Cotações de Moedas
+- **Licença**: Gratuita para uso não comercial
+- **Requer chave de acesso**: Não
+- **Rotas utilizadas**:
+  - `GET https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,BTC-BRL`
+- **Dados obtidos**:
+  - Cotação do Dólar (USD-BRL)
+  - Cotação do Euro (EUR-BRL)
+  - Cotação do Bitcoin (BTC-BRL)
+
+---
+
 ## 📝 Observações
 
-- Este front-end consome a API localizada por padrão em `http://localhost:5000`
+- Este front-end consome a API localizada por padrão em `http://localhost:5001`
 - Esta versão substitui a antiga interface feita com HTML, CSS e JS puros.
 - A migração preserva a lógica original, mas adota boas práticas modernas com componentes, estado reativo e design responsivo.
 
