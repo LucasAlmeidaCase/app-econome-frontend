@@ -10,7 +10,15 @@ import { useTransacoes } from "../hooks/useTransacoes";
 import { isEntrePeriodo, isEstaSemanaUTC, isHojeUTC } from "../utils/dateUtils";
 
 const Transacoes = () => {
-  const { transacoes, loading, error, add, remove } = useTransacoes();
+  const {
+    transacoes,
+    loading,
+    error,
+    add,
+    remove,
+    useLocalData,
+    toggleDataSource,
+  } = useTransacoes();
 
   const [openModal, setOpenModal] = useState(false);
   const [snackbar, setSnackbar] = useState({ open: false });
@@ -144,6 +152,14 @@ const Transacoes = () => {
       <Box display="flex" justifyContent="center" alignItems="center">
         {error && <Typography color="error">{error}</Typography>}
       </Box>
+
+      <Button
+        onClick={() => toggleDataSource()}
+        variant="outlined"
+        sx={{ marginRight: 2 }}
+      >
+        Usar {useLocalData ? "Backend" : "JSON Local"}
+      </Button>
     </Box>
   );
 };

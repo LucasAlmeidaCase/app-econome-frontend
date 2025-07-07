@@ -4,16 +4,24 @@ import {
   fetchTransacoes,
   removeTransacao,
 } from "../api/transacoesService";
+import {
+  createLocalTransacao,
+  fetchLocalTransacoes,
+  removeLocalTransacao,
+} from "../api/localTransacoesService";
 
 export function useTransacoes() {
   const [transacoes, setTransacoes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [useLocalData, setUseLocalData] = useState(true);
 
   useEffect(() => {
     (async () => {
       try {
-        const lista = await fetchTransacoes();
+        const lista = useLocalData
+          ? await fetchLocalTransacoes()
+          : await fetchTransacoes();
         setTransacoes(lista);
       } catch (err) {
         console.log(err);
@@ -22,19 +30,17 @@ export function useTransacoes() {
         setLoading(false);
       }
     })();
-  }, []);
+  }, [useLocalData]);
 
   const add = async (nova) => {
     try {
-      await createTransacao({
-        data_vencimento: nova.data_vencimento,
-        descricao: nova.descricao,
-        tipo_transacao: nova.tipo_transacao,
-        valor: nova.valor,
-        pago: nova.pago,
-        data_pagamento: nova.data_pagamento,
-      });
-      setTransacoes((prev) => [...prev, nova]);
+      if (useLocalData) {
+        await createLocalTransacao(nova);
+        setTransacoes((prev) => [...prev, nova]);
+      } else {
+        await createTransacao(nova);
+        setTransacoes((prev) => [...prev, nova]);
+      }
       return true;
     } catch (err) {
       console.log(err);
@@ -45,7 +51,11 @@ export function useTransacoes() {
 
   const remove = async (descricao) => {
     try {
-      await removeTransacao(descricao);
+      if (useLocalData) {
+        await removeLocalTransacao(descricao);
+      } else {
+        await removeTransacao(descricao);
+      }
       setTransacoes((prev) => prev.filter((t) => t.descricao !== descricao));
       return true;
     } catch (err) {
@@ -55,5 +65,15 @@ export function useTransacoes() {
     }
   };
 
-  return { transacoes, loading, error, add, remove };
+  const toggleDataSource = () => setUseLocalData(!useLocalData);
+
+  return {
+    transacoes,
+    loading,
+    error,
+    add,
+    remove,
+    useLocalData,
+    toggleDataSource,
+  };
 }
