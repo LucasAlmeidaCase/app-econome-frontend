@@ -1,0 +1,1192 @@
+{
+  "transacoes": [
+    {
+      "data_pagamento": "Sun, 05 Jan 2025 00:00:00 GMT",
+      "data_vencimento": "Sun, 05 Jan 2025 00:00:00 GMT",
+      "descricao": "Salário Janeiro",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Receita",
+      "valor": 3500.00
+    },
+    {
+      "data_pagamento": "Mon, 06 Jan 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 06 Jan 2025 00:00:00 GMT",
+      "descricao": "Aluguel",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 1200.00
+    },
+    {
+      "data_pagamento": "Wed, 15 Jan 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 15 Jan 2025 00:00:00 GMT",
+      "descricao": "Supermercado",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 450.00
+    },
+    {
+      "data_pagamento": "Sun, 02 Feb 2025 00:00:00 GMT",
+      "data_vencimento": "Sun, 02 Feb 2025 00:00:00 GMT",
+      "descricao": "Salário Fevereiro",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Receita",
+      "valor": 3500.00
+    },
+    {
+      "data_pagamento": "Fri, 14 Feb 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 14 Feb 2025 00:00:00 GMT",
+      "descricao": "Presente Dia dos Namorados",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 200.00
+    },
+    {
+      "data_pagamento": "Sun, 02 Mar 2025 00:00:00 GMT",
+      "data_vencimento": "Sun, 02 Mar 2025 00:00:00 GMT",
+      "descricao": "Salário Março",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Receita",
+      "valor": 3500.00
+    },
+    {
+      "data_pagamento": "Mon, 17 Mar 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 17 Mar 2025 00:00:00 GMT",
+      "descricao": "IPVA",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 1500.00
+    },
+    {
+      "data_pagamento": "Sun, 06 Apr 2025 00:00:00 GMT",
+      "data_vencimento": "Sun, 06 Apr 2025 00:00:00 GMT",
+      "descricao": "Salário Abril",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Receita",
+      "valor": 3500.00
+    },
+    {
+      "data_pagamento": "Sat, 12 Apr 2025 00:00:00 GMT",
+      "data_vencimento": "Sat, 12 Apr 2025 00:00:00 GMT",
+      "descricao": "Viagem Páscoa",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 800.00
+    },
+    {
+      "data_pagamento": "Sun, 04 May 2025 00:00:00 GMT",
+      "data_vencimento": "Sun, 04 May 2025 00:00:00 GMT",
+      "descricao": "Salário Maio",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Receita",
+      "valor": 3500.00
+    },
+    {
+      "data_pagamento": "Sun, 01 Jun 2025 00:00:00 GMT",
+      "data_vencimento": "Sun, 01 Jun 2025 00:00:00 GMT",
+      "descricao": "Salário Junho",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Receita",
+      "valor": 3500.00
+    },
+    {
+      "data_pagamento": "Wed, 18 Jun 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 18 Jun 2025 00:00:00 GMT",
+      "descricao": "Manutenção Carro",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 600.00
+    },
+    {
+      "data_pagamento": "Sun, 06 Jul 2025 00:00:00 GMT",
+      "data_vencimento": "Sun, 06 Jul 2025 00:00:00 GMT",
+      "descricao": "Salário Julho",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Receita",
+      "valor": 3500.00
+    },
+    {
+      "data_pagamento": "Mon, 07 Jul 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 07 Jul 2025 00:00:00 GMT",
+      "descricao": "Gasolina",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 250.00
+    },
+    {
+      "data_pagamento": "Sun, 03 Aug 2025 00:00:00 GMT",
+      "data_vencimento": "Sun, 03 Aug 2025 00:00:00 GMT",
+      "descricao": "Salário Agosto",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Receita",
+      "valor": 3500.00
+    },
+    {
+      "data_pagamento": "Fri, 15 Aug 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 15 Aug 2025 00:00:00 GMT",
+      "descricao": "Compras Material Escolar",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 400.00
+    },
+    {
+      "data_pagamento": "Sun, 07 Sep 2025 00:00:00 GMT",
+      "data_vencimento": "Sun, 07 Sep 2025 00:00:00 GMT",
+      "descricao": "Salário Setembro",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Receita",
+      "valor": 3500.00
+    },
+    {
+      "data_pagamento": "Sat, 20 Sep 2025 00:00:00 GMT",
+      "data_vencimento": "Sat, 20 Sep 2025 00:00:00 GMT",
+      "descricao": "Presente Aniversário",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 150.00
+    },
+    {
+      "data_pagamento": "Sun, 05 Oct 2025 00:00:00 GMT",
+      "data_vencimento": "Sun, 05 Oct 2025 00:00:00 GMT",
+      "descricao": "Salário Outubro",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Receita",
+      "valor": 3500.00
+    },
+    {
+      "data_pagamento": "Fri, 31 Oct 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 31 Oct 2025 00:00:00 GMT",
+      "descricao": "Festa Halloween",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 120.00
+    },
+    {
+      "data_pagamento": "Sun, 02 Nov 2025 00:00:00 GMT",
+      "data_vencimento": "Sun, 02 Nov 2025 00:00:00 GMT",
+      "descricao": "Salário Novembro",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Receita",
+      "valor": 3500.00
+    },
+    {
+      "data_pagamento": "Mon, 24 Nov 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 24 Nov 2025 00:00:00 GMT",
+      "descricao": "Compras Natalinas",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 700.00
+    },
+    {
+      "data_pagamento": "Sun, 07 Dec 2025 00:00:00 GMT",
+      "data_vencimento": "Sun, 07 Dec 2025 00:00:00 GMT",
+      "descricao": "Salário Dezembro",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Receita",
+      "valor": 3500.00
+    },
+    {
+      "data_pagamento": "Wed, 25 Dec 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 25 Dec 2025 00:00:00 GMT",
+      "descricao": "Presentes de Natal",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 1000.00
+    },
+    {
+      "data_pagamento": "Tue, 31 Dec 2025 00:00:00 GMT",
+      "data_vencimento": "Tue, 31 Dec 2025 00:00:00 GMT",
+      "descricao": "Ceia de Ano Novo",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 300.00
+    },
+    {
+      "data_pagamento": "Mon, 13 Jan 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 13 Jan 2025 00:00:00 GMT",
+      "descricao": "Internet",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 99.90
+    },
+    {
+      "data_pagamento": "Wed, 15 Jan 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 15 Jan 2025 00:00:00 GMT",
+      "descricao": "Academia",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 120.00
+    },
+    {
+      "data_pagamento": "Fri, 17 Jan 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 17 Jan 2025 00:00:00 GMT",
+      "descricao": "Cinema",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 50.00
+    },
+    {
+      "data_pagamento": "Mon, 03 Feb 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 03 Feb 2025 00:00:00 GMT",
+      "descricao": "Luz",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 150.00
+    },
+    {
+      "data_pagamento": "Wed, 05 Feb 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 05 Feb 2025 00:00:00 GMT",
+      "descricao": "Água",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 80.00
+    },
+    {
+      "data_pagamento": "Fri, 07 Feb 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 07 Feb 2025 00:00:00 GMT",
+      "descricao": "Telefone",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 59.90
+    },
+    {
+      "data_pagamento": "Mon, 10 Mar 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 10 Mar 2025 00:00:00 GMT",
+      "descricao": "Seguro Carro",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 300.00
+    },
+    {
+      "data_pagamento": "Wed, 12 Mar 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 12 Mar 2025 00:00:00 GMT",
+      "descricao": "Restaurante",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 120.00
+    },
+    {
+      "data_pagamento": "Fri, 28 Mar 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 28 Mar 2025 00:00:00 GMT",
+      "descricao": "Livros",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 85.50
+    },
+    {
+      "data_pagamento": "Mon, 07 Apr 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 07 Apr 2025 00:00:00 GMT",
+      "descricao": "Plano de Saúde",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 450.00
+    },
+    {
+      "data_pagamento": "Wed, 09 Apr 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 09 Apr 2025 00:00:00 GMT",
+      "descricao": "Farmácia",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 65.00
+    },
+    {
+      "data_pagamento": "Fri, 11 Apr 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 11 Apr 2025 00:00:00 GMT",
+      "descricao": "Lazer",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 75.00
+    },
+    {
+      "data_pagamento": "Mon, 05 May 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 05 May 2025 00:00:00 GMT",
+      "descricao": "Combustível",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 180.00
+    },
+    {
+      "data_pagamento": "Wed, 07 May 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 07 May 2025 00:00:00 GMT",
+      "descricao": "Manutenção Casa",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 220.00
+    },
+    {
+      "data_pagamento": "Fri, 09 May 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 09 May 2025 00:00:00 GMT",
+      "descricao": "Vestuário",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 150.00
+    },
+    {
+      "data_pagamento": "Mon, 02 Jun 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 02 Jun 2025 00:00:00 GMT",
+      "descricao": "IPTU",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 800.00
+    },
+    {
+      "data_pagamento": "Wed, 04 Jun 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 04 Jun 2025 00:00:00 GMT",
+      "descricao": "Streaming",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 39.90
+    },
+    {
+      "data_pagamento": "Fri, 06 Jun 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 06 Jun 2025 00:00:00 GMT",
+      "descricao": "Jantar Fora",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 90.00
+    },
+    {
+      "data_pagamento": "Mon, 09 Jun 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 09 Jun 2025 00:00:00 GMT",
+      "descricao": "Cursos Online",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 120.00
+    },
+    {
+      "data_pagamento": "Wed, 11 Jun 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 11 Jun 2025 00:00:00 GMT",
+      "descricao": "Presente",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 60.00
+    },
+    {
+      "data_pagamento": "Fri, 13 Jun 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 13 Jun 2025 00:00:00 GMT",
+      "descricao": "Lazer",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 45.00
+    },
+    {
+      "data_pagamento": "Mon, 16 Jun 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 16 Jun 2025 00:00:00 GMT",
+      "descricao": "Supermercado",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 180.00
+    },
+    {
+      "data_pagamento": "Wed, 18 Jun 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 18 Jun 2025 00:00:00 GMT",
+      "descricao": "Farmácia",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 55.00
+    },
+    {
+      "data_pagamento": "Fri, 20 Jun 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 20 Jun 2025 00:00:00 GMT",
+      "descricao": "Cinema",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 40.00
+    },
+    {
+      "data_pagamento": "Mon, 23 Jun 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 23 Jun 2025 00:00:00 GMT",
+      "descricao": "Transporte",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 75.00
+    },
+    {
+      "data_pagamento": "Wed, 25 Jun 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 25 Jun 2025 00:00:00 GMT",
+      "descricao": "Restaurante",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 85.00
+    },
+    {
+      "data_pagamento": "Fri, 27 Jun 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 27 Jun 2025 00:00:00 GMT",
+      "descricao": "Lazer",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 50.00
+    },
+    {
+      "data_pagamento": "Mon, 30 Jun 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 30 Jun 2025 00:00:00 GMT",
+      "descricao": "Manutenção Eletrônicos",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 120.00
+    },
+    {
+      "data_pagamento": "Wed, 02 Jul 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 02 Jul 2025 00:00:00 GMT",
+      "descricao": "Supermercado",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 160.00
+    },
+    {
+      "data_pagamento": "Fri, 04 Jul 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 04 Jul 2025 00:00:00 GMT",
+      "descricao": "Lazer",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 65.00
+    },
+    {
+      "data_pagamento": "Mon, 07 Jul 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 07 Jul 2025 00:00:00 GMT",
+      "descricao": "Transporte",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 70.00
+    },
+    {
+      "data_pagamento": "Wed, 09 Jul 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 09 Jul 2025 00:00:00 GMT",
+      "descricao": "Farmácia",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 45.00
+    },
+    {
+      "data_pagamento": "Fri, 11 Jul 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 11 Jul 2025 00:00:00 GMT",
+      "descricao": "Restaurante",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 95.00
+    },
+    {
+      "data_pagamento": "Mon, 14 Jul 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 14 Jul 2025 00:00:00 GMT",
+      "descricao": "Manutenção Casa",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 180.00
+    },
+    {
+      "data_pagamento": "Wed, 16 Jul 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 16 Jul 2025 00:00:00 GMT",
+      "descricao": "Presente",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 55.00
+    },
+    {
+      "data_pagamento": "Fri, 18 Jul 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 18 Jul 2025 00:00:00 GMT",
+      "descricao": "Lazer",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 60.00
+    },
+    {
+      "data_pagamento": "Mon, 21 Jul 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 21 Jul 2025 00:00:00 GMT",
+      "descricao": "Supermercado",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 170.00
+    },
+    {
+      "data_pagamento": "Wed, 23 Jul 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 23 Jul 2025 00:00:00 GMT",
+      "descricao": "Cinema",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 45.00
+    },
+    {
+      "data_pagamento": "Fri, 25 Jul 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 25 Jul 2025 00:00:00 GMT",
+      "descricao": "Restaurante",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 85.00
+    },
+    {
+      "data_pagamento": "Mon, 28 Jul 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 28 Jul 2025 00:00:00 GMT",
+      "descricao": "Transporte",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 75.00
+    },
+    {
+      "data_pagamento": "Wed, 30 Jul 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 30 Jul 2025 00:00:00 GMT",
+      "descricao": "Farmácia",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 50.00
+    },
+    {
+      "data_pagamento": "Fri, 01 Aug 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 01 Aug 2025 00:00:00 GMT",
+      "descricao": "Lazer",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 55.00
+    },
+    {
+      "data_pagamento": "Mon, 04 Aug 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 04 Aug 2025 00:00:00 GMT",
+      "descricao": "Supermercado",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 165.00
+    },
+    {
+      "data_pagamento": "Wed, 06 Aug 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 06 Aug 2025 00:00:00 GMT",
+      "descricao": "Manutenção Carro",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 220.00
+    },
+    {
+      "data_pagamento": "Fri, 08 Aug 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 08 Aug 2025 00:00:00 GMT",
+      "descricao": "Restaurante",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 90.00
+    },
+    {
+      "data_pagamento": "Mon, 11 Aug 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 11 Aug 2025 00:00:00 GMT",
+      "descricao": "Transporte",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 80.00
+    },
+    {
+      "data_pagamento": "Wed, 13 Aug 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 13 Aug 2025 00:00:00 GMT",
+      "descricao": "Farmácia",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 60.00
+    },
+    {
+      "data_pagamento": "Fri, 15 Aug 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 15 Aug 2025 00:00:00 GMT",
+      "descricao": "Lazer",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 70.00
+    },
+    {
+      "data_pagamento": "Mon, 18 Aug 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 18 Aug 2025 00:00:00 GMT",
+      "descricao": "Supermercado",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 175.00
+    },
+    {
+      "data_pagamento": "Wed, 20 Aug 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 20 Aug 2025 00:00:00 GMT",
+      "descricao": "Cinema",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 50.00
+    },
+    {
+      "data_pagamento": "Fri, 22 Aug 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 22 Aug 2025 00:00:00 GMT",
+      "descricao": "Restaurante",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 95.00
+    },
+    {
+      "data_pagamento": "Mon, 25 Aug 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 25 Aug 2025 00:00:00 GMT",
+      "descricao": "Transporte",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 85.00
+    },
+    {
+      "data_pagamento": "Wed, 27 Aug 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 27 Aug 2025 00:00:00 GMT",
+      "descricao": "Farmácia",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 55.00
+    },
+    {
+      "data_pagamento": "Fri, 29 Aug 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 29 Aug 2025 00:00:00 GMT",
+      "descricao": "Lazer",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 65.00
+    },
+    {
+      "data_pagamento": "Mon, 01 Sep 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 01 Sep 2025 00:00:00 GMT",
+      "descricao": "Supermercado",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 180.00
+    },
+    {
+      "data_pagamento": "Wed, 03 Sep 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 03 Sep 2025 00:00:00 GMT",
+      "descricao": "Manutenção Casa",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 200.00
+    },
+    {
+      "data_pagamento": "Fri, 05 Sep 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 05 Sep 2025 00:00:00 GMT",
+      "descricao": "Restaurante",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 100.00
+    },
+    {
+      "data_pagamento": "Mon, 08 Sep 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 08 Sep 2025 00:00:00 GMT",
+      "descricao": "Transporte",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 90.00
+    },
+    {
+      "data_pagamento": "Wed, 10 Sep 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 10 Sep 2025 00:00:00 GMT",
+      "descricao": "Farmácia",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 60.00
+    },
+    {
+      "data_pagamento": "Fri, 12 Sep 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 12 Sep 2025 00:00:00 GMT",
+      "descricao": "Lazer",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 70.00
+    },
+    {
+      "data_pagamento": "Mon, 15 Sep 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 15 Sep 2025 00:00:00 GMT",
+      "descricao": "Supermercado",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 185.00
+    },
+    {
+      "data_pagamento": "Wed, 17 Sep 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 17 Sep 2025 00:00:00 GMT",
+      "descricao": "Cinema",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 55.00
+    },
+    {
+      "data_pagamento": "Fri, 19 Sep 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 19 Sep 2025 00:00:00 GMT",
+      "descricao": "Restaurante",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 105.00
+    },
+    {
+      "data_pagamento": "Mon, 22 Sep 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 22 Sep 2025 00:00:00 GMT",
+      "descricao": "Transporte",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 95.00
+    },
+    {
+      "data_pagamento": "Wed, 24 Sep 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 24 Sep 2025 00:00:00 GMT",
+      "descricao": "Farmácia",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 65.00
+    },
+    {
+      "data_pagamento": "Fri, 26 Sep 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 26 Sep 2025 00:00:00 GMT",
+      "descricao": "Lazer",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 75.00
+    },
+    {
+      "data_pagamento": "Mon, 29 Sep 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 29 Sep 2025 00:00:00 GMT",
+      "descricao": "Supermercado",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 190.00
+    },
+    {
+      "data_pagamento": "Wed, 01 Oct 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 01 Oct 2025 00:00:00 GMT",
+      "descricao": "Manutenção Carro",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 250.00
+    },
+    {
+      "data_pagamento": "Fri, 03 Oct 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 03 Oct 2025 00:00:00 GMT",
+      "descricao": "Restaurante",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 110.00
+    },
+    {
+      "data_pagamento": "Mon, 06 Oct 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 06 Oct 2025 00:00:00 GMT",
+      "descricao": "Transporte",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 100.00
+    },
+    {
+      "data_pagamento": "Wed, 08 Oct 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 08 Oct 2025 00:00:00 GMT",
+      "descricao": "Farmácia",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 70.00
+    },
+    {
+      "data_pagamento": "Fri, 10 Oct 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 10 Oct 2025 00:00:00 GMT",
+      "descricao": "Lazer",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 80.00
+    },
+    {
+      "data_pagamento": "Mon, 13 Oct 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 13 Oct 2025 00:00:00 GMT",
+      "descricao": "Supermercado",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 195.00
+    },
+    {
+      "data_pagamento": "Wed, 15 Oct 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 15 Oct 2025 00:00:00 GMT",
+      "descricao": "Cinema",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 60.00
+    },
+    {
+      "data_pagamento": "Fri, 17 Oct 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 17 Oct 2025 00:00:00 GMT",
+      "descricao": "Restaurante",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 115.00
+    },
+    {
+      "data_pagamento": "Mon, 20 Oct 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 20 Oct 2025 00:00:00 GMT",
+      "descricao": "Transporte",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 105.00
+    },
+    {
+      "data_pagamento": "Wed, 22 Oct 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 22 Oct 2025 00:00:00 GMT",
+      "descricao": "Farmácia",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 75.00
+    },
+    {
+      "data_pagamento": "Fri, 24 Oct 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 24 Oct 2025 00:00:00 GMT",
+      "descricao": "Lazer",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 85.00
+    },
+    {
+      "data_pagamento": "Mon, 27 Oct 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 27 Oct 2025 00:00:00 GMT",
+      "descricao": "Supermercado",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 200.00
+    },
+    {
+      "data_pagamento": "Wed, 29 Oct 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 29 Oct 2025 00:00:00 GMT",
+      "descricao": "Manutenção Casa",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 220.00
+    },
+    {
+      "data_pagamento": "Fri, 31 Oct 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 31 Oct 2025 00:00:00 GMT",
+      "descricao": "Restaurante",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 120.00
+    },
+    {
+      "data_pagamento": "Mon, 03 Nov 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 03 Nov 2025 00:00:00 GMT",
+      "descricao": "Transporte",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 110.00
+    },
+    {
+      "data_pagamento": "Wed, 05 Nov 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 05 Nov 2025 00:00:00 GMT",
+      "descricao": "Farmácia",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 80.00
+    },
+    {
+      "data_pagamento": "Fri, 07 Nov 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 07 Nov 2025 00:00:00 GMT",
+      "descricao": "Lazer",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 90.00
+    },
+    {
+      "data_pagamento": "Mon, 10 Nov 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 10 Nov 2025 00:00:00 GMT",
+      "descricao": "Supermercado",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 205.00
+    },
+    {
+      "data_pagamento": "Wed, 12 Nov 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 12 Nov 2025 00:00:00 GMT",
+      "descricao": "Cinema",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 65.00
+    },
+    {
+      "data_pagamento": "Fri, 14 Nov 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 14 Nov 2025 00:00:00 GMT",
+      "descricao": "Restaurante",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 125.00
+    },
+    {
+      "data_pagamento": "Mon, 17 Nov 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 17 Nov 2025 00:00:00 GMT",
+      "descricao": "Transporte",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 115.00
+    },
+    {
+      "data_pagamento": "Wed, 19 Nov 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 19 Nov 2025 00:00:00 GMT",
+      "descricao": "Farmácia",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 85.00
+    },
+    {
+      "data_pagamento": "Fri, 21 Nov 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 21 Nov 2025 00:00:00 GMT",
+      "descricao": "Lazer",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 95.00
+    },
+    {
+      "data_pagamento": "Mon, 24 Nov 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 24 Nov 2025 00:00:00 GMT",
+      "descricao": "Supermercado",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 210.00
+    },
+    {
+      "data_pagamento": "Wed, 26 Nov 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 26 Nov 2025 00:00:00 GMT",
+      "descricao": "Manutenção Carro",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 270.00
+    },
+    {
+      "data_pagamento": "Fri, 28 Nov 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 28 Nov 2025 00:00:00 GMT",
+      "descricao": "Restaurante",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 130.00
+    },
+    {
+      "data_pagamento": "Mon, 01 Dec 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 01 Dec 2025 00:00:00 GMT",
+      "descricao": "Transporte",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 120.00
+    },
+    {
+      "data_pagamento": "Wed, 03 Dec 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 03 Dec 2025 00:00:00 GMT",
+      "descricao": "Farmácia",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 90.00
+    },
+    {
+      "data_pagamento": "Fri, 05 Dec 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 05 Dec 2025 00:00:00 GMT",
+      "descricao": "Lazer",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 100.00
+    },
+    {
+      "data_pagamento": "Mon, 08 Dec 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 08 Dec 2025 00:00:00 GMT",
+      "descricao": "Supermercado",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 215.00
+    },
+    {
+      "data_pagamento": "Wed, 10 Dec 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 10 Dec 2025 00:00:00 GMT",
+      "descricao": "Cinema",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 70.00
+    },
+    {
+      "data_pagamento": "Fri, 12 Dec 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 12 Dec 2025 00:00:00 GMT",
+      "descricao": "Restaurante",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 135.00
+    },
+    {
+      "data_pagamento": "Mon, 15 Dec 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 15 Dec 2025 00:00:00 GMT",
+      "descricao": "Transporte",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 125.00
+    },
+    {
+      "data_pagamento": "Wed, 17 Dec 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 17 Dec 2025 00:00:00 GMT",
+      "descricao": "Farmácia",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 95.00
+    },
+    {
+      "data_pagamento": "Fri, 19 Dec 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 19 Dec 2025 00:00:00 GMT",
+      "descricao": "Lazer",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 105.00
+    },
+    {
+      "data_pagamento": "Mon, 22 Dec 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 22 Dec 2025 00:00:00 GMT",
+      "descricao": "Supermercado",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 220.00
+    },
+    {
+      "data_pagamento": "Wed, 24 Dec 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 24 Dec 2025 00:00:00 GMT",
+      "descricao": "Presentes Natal",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 500.00
+    },
+    {
+      "data_pagamento": "Fri, 26 Dec 2025 00:00:00 GMT",
+      "data_vencimento": "Fri, 26 Dec 2025 00:00:00 GMT",
+      "descricao": "Restaurante",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 140.00
+    },
+    {
+      "data_pagamento": "Mon, 29 Dec 2025 00:00:00 GMT",
+      "data_vencimento": "Mon, 29 Dec 2025 00:00:00 GMT",
+      "descricao": "Transporte",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 130.00
+    },
+    {
+      "data_pagamento": "Wed, 31 Dec 2025 00:00:00 GMT",
+      "data_vencimento": "Wed, 31 Dec 2025 00:00:00 GMT",
+      "descricao": "Farmácia",
+      "observacoes": [],
+      "pago": true,
+      "tipo_transacao": "Despesa",
+      "valor": 100.00
+    }
+  ]
+}
