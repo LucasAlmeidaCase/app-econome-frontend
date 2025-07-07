@@ -3,6 +3,7 @@ import Banner from "../components/Banner";
 import { useTransacoes } from "../hooks/useTransacoes";
 import ResumoDiario from "../components/ResumoDiario";
 import { isHojeUTC } from "../utils/dateUtils";
+import CotacoesCard from "../components/CotacoesCard";
 
 const Home = () => {
   const { transacoes, loading } = useTransacoes();
@@ -32,6 +33,10 @@ const Home = () => {
         ) : (
           <ResumoDiario receitas={receitasHoje} despesas={despesasHoje} />
         )}
+      </Box>
+
+      <Box mt={4}>
+        <CotacoesCard />
       </Box>
     </>
   );
