@@ -10,8 +10,9 @@ Interface web do sistema **EconoMe**, uma aplicação para controle financeiro p
 
 ## 🔗 Repositórios do Projeto
 
-- 🔙 [Back-end (API EconoMe)](https://github.com/LucasAlmeidaCase/app-econome-backend)
-- 🔜 Front-end React (você está aqui)
+- 🧾 [API de Pedidos (Java/Spring)](https://github.com/LucasAlmeidaCase/app-econome-pedidos.git)
+- 💸 [API de Transações (Python/Flask)](https://github.com/LucasAlmeidaCase/app-econome-transacoes.git)
+- �️ Front-end React (você está aqui)
 
 ---
 
