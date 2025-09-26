@@ -146,7 +146,11 @@ export default function TransactionForm({ onAddTransaction }) {
               onClick={() => {
                 setPago(prev => {
                   const novo = !prev;
-                  if (!novo) setDataPagamento("");
+                  if (!novo) {
+                    setDataPagamento("");
+                  } else if (!dataPagamento) {
+                    setDataPagamento(hojeLocal());
+                  }
                   return novo;
                 });
               }}
