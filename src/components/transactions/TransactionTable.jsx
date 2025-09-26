@@ -12,8 +12,9 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useState } from "react";
 import ConfirmDialog from "../common/ConfirmDialog";
 import { formatarData } from "../../utils/dateUtils";
+import { TipoChip, PagoChip } from "../common/StatusChips.jsx";
 
-export default function TransactionTable({ transactions = [], onDelete }) {
+export default function TransactionTable({ transactions = [], onDelete, onTogglePago }) {
   const [openDialog, setOpenDialog] = useState(false);
   const [indexToDelete, setIndexToDelete] = useState(null);
 
@@ -59,12 +60,12 @@ export default function TransactionTable({ transactions = [], onDelete }) {
                 {formatarData(transacao.data_vencimento)}
               </TableCell>
               <TableCell align="center">{transacao.descricao}</TableCell>
-              <TableCell align="center">{transacao.tipo_transacao}</TableCell>
+              <TableCell align="center"><TipoChip value={transacao.tipo_transacao} /></TableCell>
               <TableCell align="center">
                 R$ {parseFloat(transacao.valor).toFixed(2)}
               </TableCell>
               <TableCell align="center">
-                {transacao.pago ? "Sim" : "Não"}
+                <PagoChip pago={!!transacao.pago} onToggle={onTogglePago ? () => onTogglePago(transacao, index) : undefined} />
               </TableCell>
               <TableCell align="center">
                 {formatarData(transacao.data_pagamento)}
