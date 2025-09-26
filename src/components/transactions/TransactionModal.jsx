@@ -7,7 +7,14 @@ import {
 } from "@mui/material";
 import TransactionForm from "./TransactionForm";
 
-const TransactionModal = ({ open, onClose, onAddTransaction }) => {
+const TransactionModal = ({
+  open,
+  onClose,
+  onAddTransaction,
+  onUpdateTransaction,
+  editing,
+  currentTransaction,
+}) => {
   return (
     <Dialog
       open={open}
@@ -16,9 +23,16 @@ const TransactionModal = ({ open, onClose, onAddTransaction }) => {
       scroll="body"
       PaperProps={{ sx: { borderRadius: 3 } }}
     >
-      <DialogTitle>Nova Transação</DialogTitle>
+      <DialogTitle>
+        {editing ? "Editar Transação" : "Nova Transação"}
+      </DialogTitle>
       <DialogContent>
-        <TransactionForm onAddTransaction={onAddTransaction} />
+        <TransactionForm
+          onAddTransaction={onAddTransaction}
+          onUpdateTransaction={onUpdateTransaction}
+          editing={editing}
+          currentTransaction={currentTransaction}
+        />
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose} color="error">

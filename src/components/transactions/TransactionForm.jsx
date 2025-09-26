@@ -11,18 +11,23 @@ import {
   Typography,
   Stack,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CustomSnackbar from "../common/CustomSnackbar";
-import PaidIcon from '@mui/icons-material/Paid';
-import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
+import PaidIcon from "@mui/icons-material/Paid";
+import HourglassEmptyIcon from "@mui/icons-material/HourglassEmpty";
 
-export default function TransactionForm({ onAddTransaction }) {
+export default function TransactionForm({
+  onAddTransaction,
+  onUpdateTransaction,
+  editing = false,
+  currentTransaction,
+}) {
   // Função para obter a data de hoje no fuso local no formato YYYY-MM-DD
   const hojeLocal = () => {
     const d = new Date();
     const yyyy = d.getFullYear();
-    const mm = String(d.getMonth() + 1).padStart(2, '0');
-    const dd = String(d.getDate()).padStart(2, '0');
+    const mm = String(d.getMonth() + 1).padStart(2, "0");
+    const dd = String(d.getDate()).padStart(2, "0");
     return `${yyyy}-${mm}-${dd}`;
   };
 
@@ -32,6 +37,34 @@ export default function TransactionForm({ onAddTransaction }) {
   const [valor, setValor] = useState("");
   const [pago, setPago] = useState(false);
   const [dataPagamento, setDataPagamento] = useState("");
+  const [id, setId] = useState(null);
+
+  useEffect(() => {
+    if (editing && currentTransaction) {
+      setId(currentTransaction.id);
+      // Converte datas vindas do backend (RFC 1123 / outros formatos) para YYYY-MM-DD
+      const toInputDate = (raw) => {
+        if (!raw) return "";
+        const d = new Date(raw);
+        if (isNaN(d.getTime())) return ""; // tenta evitar valores inválidos
+        return d.toISOString().split("T")[0];
+      };
+      const venc =
+        toInputDate(currentTransaction.data_vencimento) || hojeLocal();
+      setDataVencimento(venc);
+      setDescricao(currentTransaction.descricao || "");
+      setTipoTransacao(currentTransaction.tipo_transacao || "Receita");
+      setValor(
+        currentTransaction.valor !== undefined
+          ? String(currentTransaction.valor)
+          : ""
+      );
+      const pagoAtual = !!currentTransaction.pago;
+      setPago(pagoAtual);
+      const pag = toInputDate(currentTransaction.data_pagamento);
+      setDataPagamento(pagoAtual ? pag : "");
+    }
+  }, [editing, currentTransaction]);
 
   // Estados para a Snackbar
   const [snackbar, setSnackbar] = useState({
@@ -65,21 +98,32 @@ export default function TransactionForm({ onAddTransaction }) {
       return;
     }
 
-    onAddTransaction({
-      data_vencimento: dataVencimento,
-      descricao,
-      tipo_transacao: tipoTransacao,
-      valor: parseFloat(valor),
-      pago,
-      data_pagamento: pago ? dataPagamento : null,
-    });
+    if (editing && onUpdateTransaction) {
+      onUpdateTransaction(id, {
+        data_vencimento: dataVencimento,
+        descricao,
+        tipo_transacao: tipoTransacao,
+        valor: parseFloat(valor),
+        pago,
+        data_pagamento: pago ? dataPagamento : null,
+      });
+    } else {
+      onAddTransaction({
+        data_vencimento: dataVencimento,
+        descricao,
+        tipo_transacao: tipoTransacao,
+        valor: parseFloat(valor),
+        pago,
+        data_pagamento: pago ? dataPagamento : null,
+      });
+    }
 
     // Limpa os campos
     setDescricao("");
     setTipoTransacao("Receita");
     setValor("");
-  setPago(false);
-  setDataPagamento("");
+    setPago(false);
+    setDataPagamento("");
 
     // Exibe snackbar de sucesso
     setSnackbar({
@@ -139,12 +183,20 @@ export default function TransactionForm({ onAddTransaction }) {
           required
         />
 
-        <Stack direction="row" alignItems="center" spacing={1} sx={{ mt: 1, mb: 1 }}>
-          <Tooltip title={pago ? "Transação marcada como paga" : "Marcar como paga"} arrow>
+        <Stack
+          direction="row"
+          alignItems="center"
+          spacing={1}
+          sx={{ mt: 1, mb: 1 }}
+        >
+          <Tooltip
+            title={pago ? "Transação marcada como paga" : "Marcar como paga"}
+            arrow
+          >
             <IconButton
               color={pago ? "success" : "default"}
               onClick={() => {
-                setPago(prev => {
+                setPago((prev) => {
                   const novo = !prev;
                   if (!novo) {
                     setDataPagamento("");
@@ -156,13 +208,20 @@ export default function TransactionForm({ onAddTransaction }) {
               }}
               aria-label={pago ? "Marcar como não paga" : "Marcar como paga"}
               size="small"
-              sx={{ border: 1, borderColor: pago ? 'success.main' : 'divider' }}
+              sx={{ border: 1, borderColor: pago ? "success.main" : "divider" }}
             >
-              {pago ? <PaidIcon fontSize="small" /> : <HourglassEmptyIcon fontSize="small" />}
+              {pago ? (
+                <PaidIcon fontSize="small" />
+              ) : (
+                <HourglassEmptyIcon fontSize="small" />
+              )}
             </IconButton>
           </Tooltip>
-          <Typography variant="body2" color={pago ? 'success.main' : 'text.secondary'}>
-            {pago ? 'Paga' : 'Não paga'}
+          <Typography
+            variant="body2"
+            color={pago ? "success.main" : "text.secondary"}
+          >
+            {pago ? "Paga" : "Não paga"}
           </Typography>
         </Stack>
 
@@ -171,16 +230,15 @@ export default function TransactionForm({ onAddTransaction }) {
             label="Data de Pagamento"
             type="date"
             value={dataPagamento}
-            onChange={e => setDataPagamento(e.target.value)}
+            onChange={(e) => setDataPagamento(e.target.value)}
             fullWidth
             margin="normal"
             InputLabelProps={{ shrink: true }}
-          >
-          </TextField>
+          ></TextField>
         )}
 
         <Button type="submit" variant="contained" fullWidth>
-          Salvar
+          {editing ? "Atualizar" : "Salvar"}
         </Button>
       </Box>
 

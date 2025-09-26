@@ -16,11 +16,14 @@ const Transacoes = () => {
     error,
     add,
     remove,
+    update,
     useLocalData,
     toggleDataSource,
   } = useTransacoes();
 
   const [openModal, setOpenModal] = useState(false);
+  const [editing, setEditing] = useState(false);
+  const [transacaoEdicao, setTransacaoEdicao] = useState(null);
   const [snackbar, setSnackbar] = useState({ open: false });
 
   const [filtro, setFiltro] = useState(() => {
@@ -41,13 +44,25 @@ const Transacoes = () => {
 
   const handleAdd = async (novaTransacao) => {
     const sucesso = await add(novaTransacao);
+    finalizarModalFeedback(sucesso, "adicionada");
+  };
 
+  const handleUpdate = async (id, dados) => {
+    const sucesso = await update(id, dados);
+    finalizarModalFeedback(sucesso, "atualizada");
+  };
+
+  const finalizarModalFeedback = (sucesso, acao) => {
     setOpenModal(false);
+    setEditing(false);
+    setTransacaoEdicao(null);
     setSnackbar({
       open: true,
       message: sucesso
-        ? "Transação adicionada com sucesso!"
-        : "Erro ao adicionar transação.",
+        ? `Transação ${acao} com sucesso!`
+        : `Erro ao ${
+            acao === "adicionada" ? "adicionar" : "atualizar"
+          } transação.`,
       timeout: 2000,
       severity: sucesso ? "success" : "error",
     });
@@ -112,7 +127,11 @@ const Transacoes = () => {
       <Box display="flex" justifyContent="flex-end">
         <Button
           variant="contained"
-          onClick={() => setOpenModal(true)}
+          onClick={() => {
+            setOpenModal(true);
+            setEditing(false);
+            setTransacaoEdicao(null);
+          }}
           disabled={loading || Boolean(error)}
         >
           Adicionar Transação
@@ -132,13 +151,25 @@ const Transacoes = () => {
         <TransactionTable
           transactions={transacoesFiltradas}
           onDelete={handleDelete}
+          onEdit={(t) => {
+            setTransacaoEdicao(t);
+            setEditing(true);
+            setOpenModal(true);
+          }}
         />
       )}
 
       <TransactionModal
         open={openModal}
-        onClose={() => setOpenModal(false)}
+        onClose={() => {
+          setOpenModal(false);
+          setEditing(false);
+          setTransacaoEdicao(null);
+        }}
         onAddTransaction={handleAdd}
+        onUpdateTransaction={handleUpdate}
+        editing={editing}
+        currentTransaction={transacaoEdicao}
       />
 
       {/* Snackbar para mensagens de erro ou sucesso */}
