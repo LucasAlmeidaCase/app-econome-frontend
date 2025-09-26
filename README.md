@@ -127,13 +127,22 @@ O projeto consome a API pública de cotações da [AwesomeAPI](https://docs.awes
 
 ## 🔧 Configuração de Variáveis de Ambiente
 
-Crie um arquivo `.env` na raiz (mesmo nível do `package.json`) se precisar apontar para outra URL da API de Transações:
+Crie um arquivo `.env` na raiz se quiser customizar as URLs:
 
 ```bash
+# API de Transações (Python)
 VITE_API_URL=http://localhost:5001
+
+# API de Pedidos (Java/Spring)
+VITE_PEDIDOS_API_URL=http://localhost:8080/api/pedidos
 ```
 
-Se ausente, o fallback interno usa `http://127.0.0.1:5001`.
+Fallbacks internos:
+
+- Transações: `http://127.0.0.1:5001`
+- Pedidos: `http://localhost:8080/api/pedidos`
+
+Quando rodando tudo em containers separados e usando rede Docker externa (`econome-net`), você pode apontar para os hostnames dos serviços (ex.: `http://app-econome-transacoes:5001` e `http://app-econome-pedidos:8080/api/pedidos`) se expuser o front-end em outro container na mesma rede.
 
 ---
 
