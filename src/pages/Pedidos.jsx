@@ -12,6 +12,7 @@ export default function Pedidos() {
   const [openModal, setOpenModal] = useState(false);
   const [editando, setEditando] = useState(null);
   const [snackbar, setSnackbar] = useState({ open: false });
+  const [submitting, setSubmitting] = useState(false);
   const [filtro, setFiltro] = useState(() => {
     const salvo = localStorage.getItem("filtroPedidos");
     if (salvo) {
@@ -49,6 +50,8 @@ export default function Pedidos() {
   };
 
   const handleSubmit = async (values) => {
+    if (submitting) return; // evita duplo clique
+    setSubmitting(true);
     let resultado;
     if (editando) {
       resultado = await atualizar(editando.id, values);
@@ -67,6 +70,7 @@ export default function Pedidos() {
       setOpenModal(false);
       setEditando(null);
     }
+    setSubmitting(false);
   };
 
   const handleDelete = async (id) => {
@@ -138,7 +142,7 @@ export default function Pedidos() {
         }}
         onSubmit={handleSubmit}
         initialValues={editando}
-        loading={false}
+        loading={submitting}
       />
       <CustomSnackbar
         open={snackbar.open}
