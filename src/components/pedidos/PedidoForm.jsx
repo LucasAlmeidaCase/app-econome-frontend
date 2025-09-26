@@ -1,5 +1,14 @@
 import { useEffect, useState } from "react";
-import { Box, Button, MenuItem, TextField, Stack } from "@mui/material";
+import {
+  Box,
+  Button,
+  MenuItem,
+  TextField,
+  Stack,
+  FormControlLabel,
+  Checkbox,
+  CircularProgress,
+} from "@mui/material";
 
 // Enums reais conforme backend
 const tipos = ["ENTRADA", "SAIDA"];
@@ -23,6 +32,10 @@ export default function PedidoForm({
   const [tipoPedido, setTipoPedido] = useState(tipos[0]);
   const [situacaoPedido, setSituacaoPedido] = useState(situacoes[0]);
   const [valorTotal, setValorTotal] = useState("");
+  // Campos extras para geração automática de transação quando FATURADO
+  const [dataVencimentoTransacao, setDataVencimentoTransacao] = useState("");
+  const [pagoTransacao, setPagoTransacao] = useState(false);
+  const [dataPagamentoTransacao, setDataPagamentoTransacao] = useState("");
 
   useEffect(() => {
     if (initialValues) {
@@ -43,6 +56,23 @@ export default function PedidoForm({
       setTipoPedido(initialValues.tipoPedido || tipos[0]);
       setSituacaoPedido(initialValues.situacaoPedido || situacoes[0]);
       setValorTotal(initialValues.valorTotal ?? "");
+      // Se estiver editando um pedido FATURADO, tenta popular campos de transação se existirem
+      if (initialValues.situacaoPedido === "FATURADO") {
+        setDataVencimentoTransacao(
+          initialValues.dataVencimentoTransacao ||
+            (initialValues.dataEmissaoPedido
+              ? new Date(initialValues.dataEmissaoPedido)
+                  .toISOString()
+                  .slice(0, 10)
+              : "")
+        );
+        setPagoTransacao(Boolean(initialValues.pagoTransacao));
+        setDataPagamentoTransacao(initialValues.dataPagamentoTransacao || "");
+      } else {
+        setDataVencimentoTransacao("");
+        setPagoTransacao(false);
+        setDataPagamentoTransacao("");
+      }
     }
   }, [initialValues]);
 
@@ -61,13 +91,27 @@ export default function PedidoForm({
     // Pegamos componentes da string de entrada (dataEmissaoPedido) e adicionamos .000 + offset calculado
     const zoned = `${dataEmissaoPedido}.000${sinal}${hh}:${mm}`;
 
-    onSubmit({
+    const basePayload = {
       dataEmissaoPedido: zoned,
       numeroPedido,
       tipoPedido,
       situacaoPedido,
       valorTotal: parseFloat(valorTotal),
-    });
+    };
+
+    if (situacaoPedido === "FATURADO") {
+      basePayload.dataVencimentoTransacao = dataVencimentoTransacao || null;
+      basePayload.pagoTransacao = pagoTransacao || false;
+      basePayload.dataPagamentoTransacao = pagoTransacao
+        ? dataPagamentoTransacao || null
+        : null;
+    } else {
+      basePayload.dataVencimentoTransacao = null;
+      basePayload.pagoTransacao = null;
+      basePayload.dataPagamentoTransacao = null;
+    }
+
+    onSubmit(basePayload);
   };
 
   return (
@@ -110,7 +154,37 @@ export default function PedidoForm({
           select
           label="Situação"
           value={situacaoPedido}
-          onChange={(e) => setSituacaoPedido(e.target.value)}
+          onChange={(e) => {
+            const nova = e.target.value;
+            setSituacaoPedido(nova);
+            if (nova === "FATURADO") {
+              // Se não houver data de vencimento ainda, sugere a data de emissão (parte da data) ou hoje
+              if (!dataVencimentoTransacao) {
+                try {
+                  const base = new Date(dataEmissaoPedido.split("T")[0]);
+                  const iso = new Date(
+                    base.getTime() - base.getTimezoneOffset() * 60000
+                  )
+                    .toISOString()
+                    .slice(0, 10);
+                  setDataVencimentoTransacao(iso);
+                } catch {
+                  const today = new Date();
+                  const local = new Date(
+                    today.getTime() - today.getTimezoneOffset() * 60000
+                  )
+                    .toISOString()
+                    .slice(0, 10);
+                  setDataVencimentoTransacao(local);
+                }
+              }
+            } else {
+              // Limpamos campos se mudar para estado que não gera transação
+              setDataVencimentoTransacao("");
+              setPagoTransacao(false);
+              setDataPagamentoTransacao("");
+            }
+          }}
           fullWidth
         >
           {situacoes.map((s) => (
@@ -127,14 +201,60 @@ export default function PedidoForm({
           required
           fullWidth
         />
+        {situacaoPedido === "FATURADO" && (
+          <Stack spacing={2} sx={{ borderTop: "1px solid #eee", pt: 2 }}>
+            <TextField
+              label="Vencimento Transação"
+              type="date"
+              value={dataVencimentoTransacao}
+              onChange={(e) => setDataVencimentoTransacao(e.target.value)}
+              InputLabelProps={{ shrink: true }}
+              required
+              fullWidth
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={pagoTransacao}
+                  onChange={(e) => {
+                    setPagoTransacao(e.target.checked);
+                    if (!e.target.checked) {
+                      setDataPagamentoTransacao("");
+                    } else if (!dataPagamentoTransacao) {
+                      const today = new Date();
+                      const local = new Date(
+                        today.getTime() - today.getTimezoneOffset() * 60000
+                      )
+                        .toISOString()
+                        .slice(0, 10);
+                      setDataPagamentoTransacao(local);
+                    }
+                  }}
+                />
+              }
+              label="Transação Paga?"
+            />
+            {pagoTransacao && (
+              <TextField
+                label="Data Pagamento"
+                type="date"
+                value={dataPagamentoTransacao}
+                onChange={(e) => setDataPagamentoTransacao(e.target.value)}
+                InputLabelProps={{ shrink: true }}
+                required
+                fullWidth
+              />
+            )}
+          </Stack>
+        )}
         <Stack direction="row" justifyContent="flex-end" spacing={1}>
           {onCancel && (
             <Button onClick={onCancel} color="inherit">
               Cancelar
             </Button>
           )}
-          <Button type="submit" variant="contained" disabled={loading}>
-            Salvar
+          <Button type="submit" variant="contained" disabled={loading} startIcon={loading ? <CircularProgress size={16} /> : null}>
+            {loading ? "Salvando..." : "Salvar"}
           </Button>
         </Stack>
       </Stack>
