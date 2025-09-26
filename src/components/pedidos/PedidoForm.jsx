@@ -160,15 +160,11 @@ export default function PedidoForm({
             if (nova === "FATURADO") {
               // Se não houver data de vencimento ainda, sugere a data de emissão (parte da data) ou hoje
               if (!dataVencimentoTransacao) {
-                try {
-                  const base = new Date(dataEmissaoPedido.split("T")[0]);
-                  const iso = new Date(
-                    base.getTime() - base.getTimezoneOffset() * 60000
-                  )
-                    .toISOString()
-                    .slice(0, 10);
-                  setDataVencimentoTransacao(iso);
-                } catch {
+                // dataEmissaoPedido está em formato 'YYYY-MM-DDTHH:mm:ss'. Pegamos apenas a parte da data
+                // Sem aplicar manipulação de timezone para evitar retroceder 1 dia em fusos negativos.
+                if (dataEmissaoPedido) {
+                  setDataVencimentoTransacao(dataEmissaoPedido.slice(0, 10));
+                } else {
                   const today = new Date();
                   const local = new Date(
                     today.getTime() - today.getTimezoneOffset() * 60000
