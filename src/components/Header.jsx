@@ -38,6 +38,9 @@ export default function Header() {
           <Button component={Link} to="/home" color="inherit">
             Início
           </Button>
+          <Button component={Link} to="/pedidos" color="inherit">
+            Pedidos
+          </Button>
           <Button component={Link} to="/transacoes" color="inherit">
             Transações
           </Button>
