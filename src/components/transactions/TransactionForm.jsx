@@ -2,18 +2,31 @@ import {
   Box,
   Button,
   FormControl,
-  FormControlLabel,
   InputLabel,
   MenuItem,
   Select,
-  Switch,
   TextField,
+  IconButton,
+  Tooltip,
+  Typography,
+  Stack,
 } from "@mui/material";
 import { useState } from "react";
 import CustomSnackbar from "../common/CustomSnackbar";
+import PaidIcon from '@mui/icons-material/Paid';
+import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 
 export default function TransactionForm({ onAddTransaction }) {
-  const [dataVencimento, setDataVencimento] = useState(new Date().toISOString().substring(0,10)); // Data atual ("YYYY/MM/DD")
+  // Função para obter a data de hoje no fuso local no formato YYYY-MM-DD
+  const hojeLocal = () => {
+    const d = new Date();
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const dd = String(d.getDate()).padStart(2, '0');
+    return `${yyyy}-${mm}-${dd}`;
+  };
+
+  const [dataVencimento, setDataVencimento] = useState(hojeLocal());
   const [descricao, setDescricao] = useState("");
   const [tipoTransacao, setTipoTransacao] = useState("Receita");
   const [valor, setValor] = useState("");
@@ -43,20 +56,30 @@ export default function TransactionForm({ onAddTransaction }) {
       return;
     }
 
+    if (pago && !dataPagamento) {
+      setSnackbar({
+        open: true,
+        message: "Informe a data de pagamento ou desmarque como pago.",
+        severity: "error",
+      });
+      return;
+    }
+
     onAddTransaction({
-      data_vencimento: dataVencimento, 
+      data_vencimento: dataVencimento,
       descricao,
       tipo_transacao: tipoTransacao,
       valor: parseFloat(valor),
       pago,
-      data_pagamento: pago ? dataPagamento : null
+      data_pagamento: pago ? dataPagamento : null,
     });
 
     // Limpa os campos
     setDescricao("");
     setTipoTransacao("Receita");
     setValor("");
-    setPago(false);
+  setPago(false);
+  setDataPagamento("");
 
     // Exibe snackbar de sucesso
     setSnackbar({
@@ -116,16 +139,28 @@ export default function TransactionForm({ onAddTransaction }) {
           required
         />
 
-        <FormControlLabel
-          control={
-            <Switch
-              checked={pago}
-              onChange={(e) => setPago(e.target.checked)}
-            />
-          }
-          label="Pago"
-          sx={{ mb: 2 }}
-        />
+        <Stack direction="row" alignItems="center" spacing={1} sx={{ mt: 1, mb: 1 }}>
+          <Tooltip title={pago ? "Transação marcada como paga" : "Marcar como paga"} arrow>
+            <IconButton
+              color={pago ? "success" : "default"}
+              onClick={() => {
+                setPago(prev => {
+                  const novo = !prev;
+                  if (!novo) setDataPagamento("");
+                  return novo;
+                });
+              }}
+              aria-label={pago ? "Marcar como não paga" : "Marcar como paga"}
+              size="small"
+              sx={{ border: 1, borderColor: pago ? 'success.main' : 'divider' }}
+            >
+              {pago ? <PaidIcon fontSize="small" /> : <HourglassEmptyIcon fontSize="small" />}
+            </IconButton>
+          </Tooltip>
+          <Typography variant="body2" color={pago ? 'success.main' : 'text.secondary'}>
+            {pago ? 'Paga' : 'Não paga'}
+          </Typography>
+        </Stack>
 
         {pago && (
           <TextField

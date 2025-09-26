@@ -5,10 +5,13 @@ import {
   MenuItem,
   TextField,
   Stack,
-  FormControlLabel,
-  Checkbox,
   CircularProgress,
+  Tooltip,
+  IconButton,
+  Typography,
 } from "@mui/material";
+import PaidIcon from "@mui/icons-material/Paid";
+import HourglassEmptyIcon from "@mui/icons-material/HourglassEmpty";
 
 // Enums reais conforme backend
 const tipos = ["ENTRADA", "SAIDA"];
@@ -208,13 +211,21 @@ export default function PedidoForm({
               required
               fullWidth
             />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={pagoTransacao}
-                  onChange={(e) => {
-                    setPagoTransacao(e.target.checked);
-                    if (!e.target.checked) {
+            <Stack direction="row" spacing={1} alignItems="center">
+              <Tooltip
+                title={
+                  pagoTransacao
+                    ? "Transação marcada como paga"
+                    : "Marcar transação como paga"
+                }
+                arrow
+              >
+                <IconButton
+                  color={pagoTransacao ? "success" : "default"}
+                  onClick={() => {
+                    const novo = !pagoTransacao;
+                    setPagoTransacao(novo);
+                    if (!novo) {
                       setDataPagamentoTransacao("");
                     } else if (!dataPagamentoTransacao) {
                       const today = new Date();
@@ -226,10 +237,20 @@ export default function PedidoForm({
                       setDataPagamentoTransacao(local);
                     }
                   }}
-                />
-              }
-              label="Transação Paga?"
-            />
+                  aria-label={pagoTransacao ? "Transação paga" : "Transação não paga"}
+                  size="large"
+                >
+                  {pagoTransacao ? (
+                    <PaidIcon fontSize="inherit" />
+                  ) : (
+                    <HourglassEmptyIcon fontSize="inherit" />
+                  )}
+                </IconButton>
+              </Tooltip>
+              <Typography variant="body2" color={pagoTransacao ? "success.main" : "text.secondary"}>
+                {pagoTransacao ? "Paga" : "Não paga"}
+              </Typography>
+            </Stack>
             {pagoTransacao && (
               <TextField
                 label="Data Pagamento"
