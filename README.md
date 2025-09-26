@@ -48,6 +48,10 @@ A aplicação será iniciada em: [http://localhost:5173](http://localhost:5173)
 - ✅ Adicionar novas transações (Receita ou Despesa)
 - 📋 Visualizar transações em tabela responsiva
 - 🗑️ Remover transações com confirmação modal
+- ✏️ Editar transações existentes (modal reutilizado com campos pré-preenchidos)
+- 🔁 Conversão automática de datas (RFC 1123 -> YYYY-MM-DD) ao abrir para edição
+- 🆔 Uso do campo `id` retornado pela API como chave estável (melhor performance em re-render)
+- 🔄 Atualização persistida via `PUT /transacao/{id}`
 
 ### Pedidos
 
@@ -63,6 +67,8 @@ A aplicação será iniciada em: [http://localhost:5173](http://localhost:5173)
 - 🏷️ Normalização de datas (YYYY-MM-DD) para inputs HTML e conversão segura de timezones
 - ⚙️ Variável de ambiente para configurar URL da API (`VITE_API_URL`)
 - ♻️ Reuso de componentes (modal, filtros, tabela, snackbar e dialog genérico de confirmação)
+- 🧩 Único formulário para criar/editar transações (detecção de modo por presença de `id`)
+- 🕵️ Parsing resiliente de datas para inputs `type=date`
 
 ---
 
@@ -114,8 +120,9 @@ O projeto consome a API pública de cotações da [AwesomeAPI](https://docs.awes
 
 ### API Interna de Transações (Microserviço Python)
 
-- Listagem e criação de transações financeiras
+- Listagem, criação e atualização de transações financeiras
 - Endpoint especial de consulta de transação por `pedido_id` para preencher automaticamente o formulário de edição de Pedido
+- Suporte a atualização parcial simples via `PUT /transacao/{id}` (campos não enviados não são alterados)
 
 ### API Interna de Pedidos (Microserviço Java/Spring)
 
@@ -180,9 +187,10 @@ O cálculo de datas utiliza funções utilitárias centralizadas para manter con
 Fluxo resumido:
 
 1. Usuário cria um Pedido e marca situação FATURADO.
-1. Backend de Pedidos dispara evento de domínio e cria uma Transação vinculada (via `pedido_id`).
-1. Ao editar esse Pedido no front-end, o formulário consulta `/transacoes/pedido/{id}` e preenche campos financeiros.
-1. Campos condicionais (vencimento, pago, data pagamento) só aparecem se a situação for FATURADO.
+2. Backend de Pedidos dispara evento de domínio e cria uma Transação vinculada (via `pedido_id`).
+3. Ao editar esse Pedido no front-end, o formulário consulta `/transacoes/pedido/{id}` e preenche campos financeiros.
+4. Campos condicionais (vencimento, pago, data pagamento) só aparecem se a situação for FATURADO.
+5. A transação criada pode ser posteriormente editada na tela de Transações (persistindo via `PUT /transacao/{id}`).
 
 Benefícios:
 
@@ -199,6 +207,8 @@ Benefícios:
 - Esta versão substitui a antiga interface feita com HTML, CSS e JS puros.
 - Data binding e filtros foram desenhados para minimizar re-renderizações desnecessárias.
 - Estrutura voltada a evoluir para divisão por feature modules (ex.: `pedidos/`, `transactions/`).
+- Edição de transação reutiliza o mesmo modal; ao concluir, snackbar informa status.
+- `data_pagamento` só é enviada se `pago=true`; desmarcar pago remove data (consistência de domínio).
 
 ---
 
@@ -211,6 +221,8 @@ Benefícios:
 - Tema dark/light toggle persistente
 - Internacionalização (i18n)
 - Otimização de bundle com code splitting por rota
+- Botão rápido (inline) para alternar status de pagamento sem abrir modal
+- Validação cruzada (ex.: impedir `data_pagamento` anterior a `data_vencimento` em casos inválidos)
 
 ---
 
