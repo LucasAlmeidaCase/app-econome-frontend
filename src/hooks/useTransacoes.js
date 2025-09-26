@@ -3,6 +3,7 @@ import {
   createTransacao,
   fetchTransacoes,
   removeTransacao,
+  updateTransacao,
 } from "../api/transacoesService";
 import {
   createLocalTransacao,
@@ -67,6 +68,25 @@ export function useTransacoes() {
 
   const toggleDataSource = () => setUseLocalData(!useLocalData);
 
+  const update = async (id, dados) => {
+    try {
+      if (useLocalData) {
+        // Atualização local (apenas em memória)
+        setTransacoes((prev) =>
+          prev.map((t) => (t.id === id ? { ...t, ...dados } : t))
+        );
+      } else {
+        const updated = await updateTransacao(id, dados);
+        setTransacoes((prev) => prev.map((t) => (t.id === id ? updated : t)));
+      }
+      return true;
+    } catch (err) {
+      console.log(err);
+      setError("Falha ao atualizar transação");
+      return false;
+    }
+  };
+
   return {
     transacoes,
     loading,
@@ -75,5 +95,6 @@ export function useTransacoes() {
     remove,
     useLocalData,
     toggleDataSource,
+    update,
   };
 }

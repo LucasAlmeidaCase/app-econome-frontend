@@ -39,3 +39,20 @@ export async function fetchTransacaoByPedidoId(pedidoId) {
   const response = await api.get(`/transacoes/pedido/${pedidoId}`);
   return response.data;
 }
+
+export async function updateTransacao(id, transacao) {
+  const response = await api.put(
+    `/transacao/${id}`,
+    {
+      descricao: transacao.descricao,
+      tipo_transacao: transacao.tipo_transacao,
+      valor: transacao.valor,
+      pago: transacao.pago,
+      data_vencimento: transacao.data_vencimento,
+      data_pagamento: transacao.data_pagamento,
+      pedido_id: transacao.pedido_id ?? null,
+    },
+    { headers: { "Content-Type": "application/json" } }
+  );
+  return response.data;
+}
