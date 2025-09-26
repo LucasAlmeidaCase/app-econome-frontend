@@ -34,3 +34,8 @@ export async function removeTransacao(descricao) {
   });
   return response.data;
 }
+
+export async function fetchTransacaoByPedidoId(pedidoId) {
+  const response = await api.get(`/transacoes/pedido/${pedidoId}`);
+  return response.data;
+}

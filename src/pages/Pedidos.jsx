@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { Box, Button, CircularProgress, Typography } from "@mui/material";
 import { usePedidos } from "../hooks/usePedidos";
+import { fetchTransacaoByPedidoId } from "../api/transacoesService";
 import PedidoTable from "../components/pedidos/PedidoTable";
 import PedidoModal from "../components/pedidos/PedidoModal";
 import CustomSnackbar from "../components/common/CustomSnackbar";
@@ -44,9 +45,36 @@ export default function Pedidos() {
     setOpenModal(true);
   };
 
-  const handleEdit = (pedido) => {
-    setEditando(pedido);
+  const handleEdit = async (pedido) => {
+    setEditando(pedido); // abre modal rápido com dados básicos
     setOpenModal(true);
+    if (pedido.situacaoPedido === "FATURADO") {
+      try {
+        const transacao = await fetchTransacaoByPedidoId(pedido.id);
+        const toIsoDate = (raw) => {
+          if (!raw) return "";
+            try {
+              const d = new Date(raw);
+              if (isNaN(d.getTime())) return "";
+              return new Date(d.getTime() - d.getTimezoneOffset() * 60000)
+                .toISOString()
+                .slice(0, 10);
+            } catch {
+              return "";
+            }
+        };
+        // Atualiza com campos adicionais
+        setEditando((prev) => ({
+          ...prev,
+          dataVencimentoTransacao: toIsoDate(transacao.data_vencimento),
+          pagoTransacao: Boolean(transacao.pago),
+          dataPagamentoTransacao: transacao.pago ? toIsoDate(transacao.data_pagamento) : "",
+        }));
+      } catch {
+        // 404 ou erro: ignoramos silenciosamente para não travar edição
+        // console.debug("Transação não encontrada para pedido", pedido.id);
+      }
+    }
   };
 
   const handleSubmit = async (values) => {
