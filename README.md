@@ -12,6 +12,7 @@ Interface web do sistema **EconoMe**, uma aplicação para controle financeiro p
 
 - 🧾 [API de Pedidos (Java/Spring)](https://github.com/LucasAlmeidaCase/app-econome-pedidos.git)
 - 💸 [API de Transações (Python/Flask)](https://github.com/LucasAlmeidaCase/app-econome-transacoes.git)
+- 👥 [API de Participantes (Java/Spring)](https://github.com/LucasAlmeidaCase/app-econome-participantes.git)
 - �️ Front-end React (você está aqui)
 
 ---
@@ -69,6 +70,17 @@ A aplicação será iniciada em: [http://localhost:5173](http://localhost:5173)
 - ♻️ Reuso de componentes (modal, filtros, tabela, snackbar e dialog genérico de confirmação)
 - 🧩 Único formulário para criar/editar transações (detecção de modo por presença de `id`)
 - 🕵️ Parsing resiliente de datas para inputs `type=date`
+
+### Participantes
+
+- 👥 CRUD completo de Participantes (criar, editar, remover, listar)
+- 🔒 Código do participante imutável após criação (campo desabilitado em modo edição)
+- 🕒 Data/Hora de cadastro controlada e preservada pelo backend; exibida somente em edição e em modo somente leitura
+- 🆔 Coluna de ID removida; ID interno acessível via tooltip ao passar o mouse sobre o código
+- ✅ Validações de unicidade (código / CPF-CNPJ) retornam mensagens claras de erro exibidas via snackbar
+- ✏️ Mesmo modal reutilizado para criação e edição (detecção por presença de `id`)
+- 🚫 Página sem filtros de período (simplificação intencional inicial)
+- 🔄 Preparada para futura paginação e busca server-side
 
 ---
 
@@ -129,7 +141,16 @@ O projeto consome a API pública de cotações da [AwesomeAPI](https://docs.awes
 - CRUD de pedidos
 - Em caso de Pedido FATURADO dispara evento (lado back-end) que cria transação automática — refletida aqui após recarregar/editar
 
-> A URL dessas APIs pode ser configurada pela variável `VITE_API_URL` (ver seção abaixo).
+> A URL dessas APIs pode ser configurada pelas variáveis de ambiente listadas (ver seção abaixo).
+
+### API Interna de Participantes (Microserviço Java/Spring)
+
+- CRUD de participantes (código, nome, CPF/CNPJ, tipo de pessoa, tipo de participante, data/hora cadastro)
+- Validação de unicidade (código e CPF/CNPJ)
+- Data/Hora de cadastro atribuída e preservada pelo backend (imutável após criação)
+- Atualização ignora tentativas de alteração de campos imutáveis (data/hora cadastro, código)
+
+> Endpoint base padrão: `http://localhost:8081/api/participantes` (sobreponha via `VITE_PARTICIPANTES_API_URL`).
 
 ---
 
@@ -143,12 +164,16 @@ VITE_API_URL=http://localhost:5001
 
 # API de Pedidos (Java/Spring)
 VITE_PEDIDOS_API_URL=http://localhost:8080/api/pedidos
+
+# API de Participantes (Java/Spring)
+VITE_PARTICIPANTES_API_URL=http://localhost:8081/api/participantes
 ```
 
 Fallbacks internos:
 
 - Transações: `http://127.0.0.1:5001`
 - Pedidos: `http://localhost:8080/api/pedidos`
+- Participantes: `http://localhost:8081/api/participantes`
 
 Quando rodando tudo em containers separados e usando rede Docker externa (`econome-net`), você pode apontar para os hostnames dos serviços (ex.: `http://app-econome-transacoes:5001` e `http://app-econome-pedidos:8080/api/pedidos`) se expuser o front-end em outro container na mesma rede.
 
@@ -164,9 +189,9 @@ Na página de Transações há um botão: `Usar Backend` / `Usar JSON Local`.
 
 ---
 
-## �️ Filtros e Persistência
+## 🗂️ Filtros e Persistência
 
-Ambas as páginas (Transações e Pedidos) armazenam o último filtro aplicado em `localStorage`:
+As páginas de Transações e Pedidos armazenam o último filtro aplicado em `localStorage` (Participantes não possui filtro nesta versão):
 
 Campos gravados (por página): `tipo`, `dataInicio`, `dataFim`.
 
@@ -204,11 +229,14 @@ Benefícios:
 ## 📝 Observações
 
 - API de Transações padrão: `http://localhost:5001` (sobreponha via `VITE_API_URL`).
+- API de Pedidos padrão: `http://localhost:8080/api/pedidos` (sobreponha via `VITE_PEDIDOS_API_URL`).
+- API de Participantes padrão: `http://localhost:8081/api/participantes` (sobreponha via `VITE_PARTICIPANTES_API_URL`).
 - Esta versão substitui a antiga interface feita com HTML, CSS e JS puros.
 - Data binding e filtros foram desenhados para minimizar re-renderizações desnecessárias.
-- Estrutura voltada a evoluir para divisão por feature modules (ex.: `pedidos/`, `transactions/`).
-- Edição de transação reutiliza o mesmo modal; ao concluir, snackbar informa status.
+- Estrutura voltada a evoluir para divisão por feature modules (ex.: `pedidos/`, `transactions/`, `participantes/`).
+- Edição de entidades reutiliza modais compartilhados.
 - `data_pagamento` só é enviada se `pago=true`; desmarcar pago remove data (consistência de domínio).
+- Campos imutáveis no front (código de participante, número do pedido, data/hora de cadastro) também são tratados no backend para preservação de integridade.
 
 ---
 
