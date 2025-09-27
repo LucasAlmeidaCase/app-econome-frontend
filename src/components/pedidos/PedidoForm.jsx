@@ -139,6 +139,7 @@ export default function PedidoForm({
           onChange={(e) => setNumeroPedido(e.target.value)}
           required
           fullWidth
+          disabled={Boolean(initialValues)}
         />
         <TextField
           select
