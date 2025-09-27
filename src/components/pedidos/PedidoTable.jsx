@@ -43,7 +43,6 @@ export default function PedidoTable({ pedidos, onEdit, onDelete }) {
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>ID</TableCell>
             <TableCell>Número</TableCell>
             <TableCell>Data Emissão</TableCell>
             <TableCell>Tipo</TableCell>
@@ -55,8 +54,11 @@ export default function PedidoTable({ pedidos, onEdit, onDelete }) {
         <TableBody>
           {pedidos.map((p) => (
             <TableRow key={p.id} hover>
-              <TableCell>{p.id}</TableCell>
-              <TableCell>{p.numeroPedido}</TableCell>
+              <TableCell>
+                <Tooltip title={`ID: ${p.id}`} arrow>
+                  <span>{p.numeroPedido}</span>
+                </Tooltip>
+              </TableCell>
               <TableCell>
                 {p.dataEmissaoPedido
                   ? new Date(p.dataEmissaoPedido).toLocaleString()
