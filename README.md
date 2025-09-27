@@ -42,6 +42,40 @@ A aplicação será iniciada em: [http://localhost:5173](http://localhost:5173)
 
 ---
 
+## 🐳 Execução via Docker / Compose (Modo Avaliação)
+
+Fluxo pensado para quem só quer subir rapidamente o front consumindo as três APIs já rodando localmente (ou em outros composes):
+
+```bash
+# 1. Criar rede externa compartilhada (uma única vez se ainda não existir)
+docker network create econome-net
+
+# 2. Subir o front (na pasta app-econome-frontend)
+docker compose up -d --build
+
+# 3. Acessar
+http://localhost:8085
+```
+
+O `docker-compose.yml` deste repositório já:
+
+- Usa build args para injetar as URLs das APIs (Transações, Pedidos, Participantes) no momento do build.
+- Conecta o container `econome-frontend` à rede externa `econome-net` para que, futuramente, você possa apontar as URLs para hostnames internos (ex.: `http://app-econome-pedidos:8080`).
+
+Se alterar portas das APIs, ajuste os `args:` no compose e refaça `docker compose up -d --build`.
+
+ 
+### Por que build args e não variáveis de runtime?
+
+O Vite embute as variáveis `VITE_*` no bundle durante o build – alterar env depois que a imagem está pronta não muda o JavaScript gerado. Para trocar endpoints é necessário re-build ou adotar um mecanismo de runtime config (fora de escopo neste MVP simplificado).
+
+ 
+### CORS
+
+Os serviços Java (Pedidos e Participantes) foram configurados para aceitar por padrão `http://localhost:5173` e `http://localhost:8085` (variável custom `app.cors.allowed-origins`).
+
+---
+
 ## ✨ Funcionalidades
 
 ### Transações
@@ -61,6 +95,7 @@ A aplicação será iniciada em: [http://localhost:5173](http://localhost:5173)
 - 🔄 Carregamento automático dos dados financeiros vinculados (transação) ao editar um Pedido FATURADO
 - 🧮 Campos financeiros condicionais exibidos apenas se a situação for `FATURADO` (vencimento, pago, data pagamento)
 - 💾 Persistência do último filtro aplicado entre sessões
+- 🆔 Coluna de ID interna removida na tabela; ID exibido via tooltip ao passar o mouse sobre o número do pedido
 
 ### Experiência e Infra
 
@@ -81,6 +116,7 @@ A aplicação será iniciada em: [http://localhost:5173](http://localhost:5173)
 - ✏️ Mesmo modal reutilizado para criação e edição (detecção por presença de `id`)
 - 🚫 Página sem filtros de período (simplificação intencional inicial)
 - 🔄 Preparada para futura paginação e busca server-side
+- 🆔 Mesma estratégia de tooltip para expor ID interno sem poluir a tabela
 
 ---
 
@@ -154,6 +190,28 @@ O projeto consome a API pública de cotações da [AwesomeAPI](https://docs.awes
 
 ---
 
+## 🔗 Integração Multi-Serviços (Resumo Arquitetural)
+
+Front React chama diretamente os três microserviços:
+
+- Pedidos (Java/Spring Boot)
+- Participantes (Java/Spring Boot)
+- Transações (Flask/Python)
+- Além de API externa de cotações (AwesomeAPI)
+
+Quando um Pedido FATURADO é criado ou atualizado:
+
+1. Serviço de Pedidos dispara Domain Event pós-commit
+2. Listener tenta localizar transação existente (consulta GET `/transacoes/pedido/{pedido_id}` no serviço Python)
+3. Se existir, executa PUT `/transacao/{id}` (update parcial); caso contrário cria via POST `/transacao`
+4. Front, ao abrir modal de edição de Pedido FATURADO, também consulta `/transacoes/pedido/{pedido_id}` para preencher dados financeiros
+
+Esta abordagem substitui tentativa anterior de PUT direto por `pedido_id` (endpoint inexistente) – eliminando erro HTTP 405 e conflitos 409 desnecessários.
+
+---
+
+---
+
 ## 🔧 Configuração de Variáveis de Ambiente
 
 Crie um arquivo `.env` na raiz se quiser customizar as URLs:
@@ -176,6 +234,8 @@ Fallbacks internos:
 - Participantes: `http://localhost:8081/api/participantes`
 
 Quando rodando tudo em containers separados e usando rede Docker externa (`econome-net`), você pode apontar para os hostnames dos serviços (ex.: `http://app-econome-transacoes:5001` e `http://app-econome-pedidos:8080/api/pedidos`) se expuser o front-end em outro container na mesma rede.
+
+No compose deste repositório (front), as variáveis são passadas como `build args` – modifique-as em `docker-compose.yml` caso as portas dos backends mudem.
 
 ---
 
