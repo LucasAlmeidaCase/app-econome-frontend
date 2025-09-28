@@ -1,0 +1,18 @@
+services:
+  econome-frontend:
+    build:
+      context: .
+      args:
+        # Ajuste as URLs se as portas dos outros serviços forem diferentes
+        VITE_API_URL: "http://localhost:5001"          # Transações (Python)
+        VITE_PEDIDOS_API_URL: "http://localhost:8080/api/pedidos"  # Pedidos (Java)
+        VITE_PARTICIPANTES_API_URL: "http://localhost:8081/api/participantes" # Participantes (Java)
+    container_name: econome-frontend
+    ports:
+      - "8085:80"
+    networks:
+      - econome-net
+
+networks:
+  econome-net:
+    external: true

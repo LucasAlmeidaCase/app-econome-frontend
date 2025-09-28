@@ -47,6 +47,7 @@ export default function PedidoTable({ pedidos, onEdit, onDelete }) {
             <TableCell>Data Emissão</TableCell>
             <TableCell>Tipo</TableCell>
             <TableCell>Situação</TableCell>
+            <TableCell>Participante</TableCell>
             <TableCell align="right">Valor Total</TableCell>
             <TableCell align="center">Ações</TableCell>
           </TableRow>
@@ -69,6 +70,25 @@ export default function PedidoTable({ pedidos, onEdit, onDelete }) {
               </TableCell>
               <TableCell>
                 <SituacaoChip value={p.situacaoPedido} />
+              </TableCell>
+              <TableCell>
+                {p.participante ? (
+                  <Tooltip
+                    title={`ID: ${p.participante.id} | Código: ${p.participante.codigo}`}
+                    arrow
+                  >
+                    <span>
+                      {(p.participante.nome || p.participante.codigo) +
+                        ` (${p.participante.cpfCnpj})`}
+                    </span>
+                  </Tooltip>
+                ) : p.participanteId ? (
+                  <Tooltip title={`Participante ID: ${p.participanteId}`} arrow>
+                    <span>#{p.participanteId}</span>
+                  </Tooltip>
+                ) : (
+                  <span style={{ color: "#999" }}>—</span>
+                )}
               </TableCell>
               <TableCell align="right">
                 {Number(p.valorTotal).toFixed(2)}

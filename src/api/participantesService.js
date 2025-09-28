@@ -8,9 +8,10 @@ const api = axios.create({
   headers: { Accept: "application/json" },
 });
 
-export async function listarParticipantes() {
-  const { data } = await api.get("");
-  return data; // lista de ParticipanteResponse
+export async function searchParticipantes(term) {
+  const params = term ? { term } : {};
+  const { data } = await api.get("/search", { params });
+  return data;
 }
 
 export async function buscarParticipante(id) {
@@ -49,3 +50,6 @@ export const participanteMapper = {
     };
   },
 };
+
+export const participanteLabel = (p) =>
+  p ? `${p.codigo} - ${p.nome}` : "";

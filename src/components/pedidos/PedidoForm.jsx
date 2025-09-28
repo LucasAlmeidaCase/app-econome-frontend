@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import PaidIcon from "@mui/icons-material/Paid";
 import HourglassEmptyIcon from "@mui/icons-material/HourglassEmpty";
+import ParticipanteAutocomplete from "../participantes/autocomplete/ParticipanteAutocomplete";
 
 // Enums reais conforme backend
 const tipos = ["ENTRADA", "SAIDA"];
@@ -39,6 +40,8 @@ export default function PedidoForm({
   const [dataVencimentoTransacao, setDataVencimentoTransacao] = useState("");
   const [pagoTransacao, setPagoTransacao] = useState(false);
   const [dataPagamentoTransacao, setDataPagamentoTransacao] = useState("");
+  const [participanteId, setParticipanteId] = useState(null);
+  const [participanteObj, setParticipanteObj] = useState(null);
 
   useEffect(() => {
     if (initialValues) {
@@ -59,6 +62,16 @@ export default function PedidoForm({
       setTipoPedido(initialValues.tipoPedido || tipos[0]);
       setSituacaoPedido(initialValues.situacaoPedido || situacoes[0]);
       setValorTotal(initialValues.valorTotal ?? "");
+      if (initialValues.participanteId) {
+        setParticipanteId(initialValues.participanteId);
+      }
+      // Se resposta já vier enriquecida com participante embutido, aproveitamos para evitar placeholder "(carregando)"
+      if (initialValues.participante) {
+        setParticipanteObj(initialValues.participante);
+        if (initialValues.participante.id && !initialValues.participanteId) {
+          setParticipanteId(initialValues.participante.id);
+        }
+      }
       // Se estiver editando um pedido FATURADO, tenta popular campos de transação se existirem
       if (initialValues.situacaoPedido === "FATURADO") {
         setDataVencimentoTransacao(
@@ -101,6 +114,10 @@ export default function PedidoForm({
       situacaoPedido,
       valorTotal: parseFloat(valorTotal),
     };
+
+    if (participanteId) {
+      basePayload.participanteId = participanteId;
+    }
 
     if (situacaoPedido === "FATURADO") {
       basePayload.dataVencimentoTransacao = dataVencimentoTransacao || null;
@@ -154,6 +171,14 @@ export default function PedidoForm({
             </MenuItem>
           ))}
         </TextField>
+        <ParticipanteAutocomplete
+          value={participanteObj || participanteId}
+          onChange={(id, full) => {
+            setParticipanteId(id);
+            setParticipanteObj(full);
+          }}
+          disabled={loading}
+        />
         <TextField
           select
           label="Situação"
