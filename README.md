@@ -98,7 +98,7 @@ Os serviços Java (Pedidos e Participantes) foram configurados para aceitar por 
 - 🆔 Coluna de ID interna removida na tabela; ID exibido via tooltip ao passar o mouse sobre o número do pedido
 
 ### Experiência e Infra
-
+.
 - 💡 Interface moderna com Material UI
 - 🏷️ Normalização de datas (YYYY-MM-DD) para inputs HTML e conversão segura de timezones
 - ⚙️ Variável de ambiente para configurar URL da API (`VITE_API_URL`)
@@ -207,8 +207,6 @@ Quando um Pedido FATURADO é criado ou atualizado:
 4. Front, ao abrir modal de edição de Pedido FATURADO, também consulta `/transacoes/pedido/{pedido_id}` para preencher dados financeiros
 
 Esta abordagem substitui tentativa anterior de PUT direto por `pedido_id` (endpoint inexistente) – eliminando erro HTTP 405 e conflitos 409 desnecessários.
-
----
 
 ---
 
