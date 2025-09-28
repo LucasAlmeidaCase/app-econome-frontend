@@ -47,6 +47,9 @@ export const pedidoMapper = {
       situacaoPedido: formValues.situacaoPedido,
       valorTotal: formValues.valorTotal,
     };
+    if (formValues.participanteId) {
+      payload.participanteId = formValues.participanteId;
+    }
     if (formValues.situacaoPedido === "FATURADO") {
       payload.dataVencimentoTransacao =
         formValues.dataVencimentoTransacao || null;
